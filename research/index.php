@@ -62,6 +62,9 @@ $(document).ready(function() {
 	<div class="w3-hide-small">
 	<span class="fa fa-search w3-bar-item fa-lg" style="padding-top:15px !important;"></span>
 	<input class="w3-input w3-bar-item w3-block w3-rest" type="text" placeholder="Search" style="padding-left:10px !important; min-width:50%;">
+	<span class="w3-bar-item w3-right">
+		<a href="../logout.php" class="w3-small w3-text-black "style="text-decoration:none;"><i class="fa fa-sign-out fa-fx"></i> Logout</a>
+	</span>
 	</div>
 </div>
 
@@ -161,6 +164,7 @@ $(document).ready(function() {
 <!--<script type="text/javascript" src="../js/jquery-ui.js" ></script>  -->
 <script type="text/javascript" src="../js/bootstrap-datetimepicker.js" ></script>  
 <script type="text/javascript" src="../js/actions.js"></script>
+<script type="text/javascript" src="researchActions.js"></script>
 <script src="../dist/js/select2.min.js"></script>
 <script>
 
