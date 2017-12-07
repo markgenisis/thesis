@@ -1,6 +1,6 @@
 <?php
 	include("../include/dbcon.php");
-	if($_SESSION['ACCESS_TYPE'] != 3){
+	if($_SESSION['ACCESS_TYPE'] != 4){
 		header("location:../redirecter.php");
 	}else{
 		

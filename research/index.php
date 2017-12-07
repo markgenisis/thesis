@@ -1,5 +1,10 @@
 <?php
 	include("../include/dbcon.php");
+	if($_SESSION['ACCESS_TYPE'] != 2){
+		header("location:../redirecter.php");
+	}else{
+		
+	}
 ?>
 
 <!DOCTYPE html>

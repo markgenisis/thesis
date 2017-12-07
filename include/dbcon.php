@@ -17,7 +17,7 @@
 			case 1:break;
 			case 2: $usertype = "Research Professor";return $usertype;
 			case 3: $usertype = "Panel";return $usertype;
-			case 3: $usertype = "Adviser";return $usertype;
+			case 4: $usertype = "Adviser";return $usertype;
 			default:$usertype = "Unknown";return $usertype;
 		}
 	}
