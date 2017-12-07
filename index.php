@@ -57,7 +57,7 @@ body, html {height: 100%}
 </body>
 <script type="text/javascript" src="js/jquery.js" ></script>
 <script type="text/javascript" src="js/jquery-ui.js" ></script>  
-<script type="application/javascript" src="js/actions.js"></script>
+<script type="application/javascript" src="js/login.js"></script>
 <script src="dist/js/select2.min.js"></script>
 <script>
 $( document ).ready(function() {
