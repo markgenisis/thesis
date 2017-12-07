@@ -65,7 +65,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <img src="../images/avatar.png" class="w3-circle w3-margin-right" style="width:46px">
     </div>
     <div class="w3-col s8 w3-bar">
-      <span><strong>Sabilla Genesis</strong></span><br>
+      <span><strong>Super Admin</strong></span><br>
 	  <hr style="margin:0px;"/>
 	  <small>Administrator</small>
     </div>
