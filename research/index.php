@@ -1,3 +1,7 @@
+<?php
+	include("../include/dbcon.php");
+?>
+
 <!DOCTYPE html>
 <html>
 <title>Research Professor</title>
@@ -74,11 +78,17 @@ $(document).ready(function() {
     <div class="w3-col s4">
       <img src="../images/avatar.png" class="w3-circle w3-margin-right" style="width:46px">
     </div>
-    <div class="w3-col s8 w3-bar">
-      <span><strong>Sabilla Genesis</strong></span><br>
-	  <hr style="margin:0px;"/>
-	  <small>Research Professor</small>
-    </div>
+	<?php
+		$user_id = $_SESSION['logged_in_id'];
+		$sql = mysql_query("select * from users where id='$user_id' LIMIT 1");
+		while($row = mysql_fetch_array($sql)){
+	?>
+		<div class="w3-col s8 w3-bar">
+		  <span><strong><?php echo ucwords($row['first_name'].' '.$row['middle_name'].' '.$row['last_name'])?></strong></span><br>
+		  <hr style="margin:0px;"/>
+		  <small>Research Professor</small>
+		</div>
+	<?php }?>
   </div>
   <hr>
   <div class="w3-container">

@@ -11,4 +11,14 @@
 	}else{
 		echo "not connected";
 	}*/
+	
+	function getUserType($x){
+		switch($x){
+			case 1:break;
+			case 2: $usertype = "Research Professor";return $usertype;
+			case 3: $usertype = "Panel";return $usertype;
+			case 3: $usertype = "Adviser";return $usertype;
+			default:$usertype = "Unknown";return $usertype;
+		}
+	}
 ?>
