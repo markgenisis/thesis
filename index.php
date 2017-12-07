@@ -1,5 +1,5 @@
 <?php
-	include "include/dbconn.php";
+	include "include/dbcon.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,6 @@ body, html {height: 100%}
 	 <p style="position:relative;top:-25px;font-size:11px" class="w3-right w3-text-small">© 2017 <span class="w3-hide-small w3-hide-medium">Research Repository System</span><span class="w3-hide-large">RSS</span>. All Rights Reserved.</p>
 	 
       <div class="w3-container w3-padding-16" id="loginFormCon">
-      <div id="loading_on_login"></div>
 		<form class="w3-form" id="login_form" method="" action="">
 			<div class="w3-padding-16" style="position:relative;">
 				<span class="fa fa-user w3-opacity fa-lg w3-text-black" style="position:absolute;right:10px;top:40%;z-index:99999;" id="i1"></span>

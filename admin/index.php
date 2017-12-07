@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="../images/logo.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" type="text/css" href="../google/fafa.css">
 <link href="../dist/css/select2.min.css" rel="stylesheet" />
 <link href='../css/fullcalendar.min.css' rel='stylesheet' />
@@ -53,6 +52,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	<div class="w3-hide-small">
 	<span class="fa fa-search w3-bar-item fa-lg" style="padding-top:15px !important;"></span>
 	<input class="w3-input w3-bar-item w3-block w3-rest" type="text" placeholder="Search" style="padding-left:10px !important; min-width:50%;">
+	<span class="w3-bar-item w3-right">
+		<a href="../logout.php" class="w3-small "style="text-decoration:none;"><i class="fa fa-sign-out fa-fx"></i> Logout</a>
+	</span>
 	</div>
 </div>
 

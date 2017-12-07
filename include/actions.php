@@ -1,11 +1,24 @@
 <?php
-include "dbconn.php";
+session_start();
+include "dbcon.php";
 
 if(isset($_POST['username'])){
 	$username=$_POST['username'];
-	$password=md5($_POST['password']);
-	$log=$mysqli->query("select * from accounts");
-	while($row=mysqli_fetch_assoc($log)){
+	$password=$_POST['password'];
+	//print_r($_POST);
+	$sql = mysql_query("select * from users where username='$username' and password='$password'");
+	
+	if(mysql_num_rows($sql) > 0){
+		while($row = mysql_fetch_array($sql)){
+			$_SESSION['ACCESS_TYPE']=$row['user_type'];
+			echo $row['user_type'];
+		}
+	}else{
+		echo "ERROR";
+	}
+	
+	//$log=$mysqli->query("select * from accounts");
+	/*while($row=mysqli_fetch_assoc($log)){
 		if($row['username']==$username && $row['password']==$password){
 			 
 				echo $row['type'];
@@ -14,7 +27,7 @@ if(isset($_POST['username'])){
 			 
 		}
 	}
-	echo "ERROR";
+	echo "ERROR";*/
 }
 if(isset($_POST['categoryName'])){
 	$category=$_POST['categoryName'];

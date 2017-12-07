@@ -13,7 +13,13 @@ $(document).ready(function() {
 				},
 				editable: false,
 				eventLimit: true, // allow "more" link when too many events
-				events: $.parseJSON(data)
+				events: $.parseJSON(data),
+				eventClick: function(event) {
+						if (event.url) {
+							window.open(event.url,"_self");
+							return false;
+						}
+					}
 			});
 		}
 	});
