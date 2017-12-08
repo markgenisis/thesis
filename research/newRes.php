@@ -43,7 +43,6 @@
 							<option value="<?php echo $row['id'];?>"><?php echo ucwords($row['first_name'].' '.$row['middle_name'].' '.$row['last_name'])?></option>
 						<?php }?>
 					</select>
-				  <!--<input class="w3-input w3-border" name="user_name" id="user_name" type="text" placeholder="Username" required />-->
 				  
 				<script>
 				$('#adviser').selectize({
@@ -103,6 +102,7 @@
 							//while($row = mysql_fetch_assoc($sql)){}
 						?>
 						<option value="AL">Alabama</option>
+						<option value="AL1">Alabama</option>
 					</select>
 					<script>
 					$('#course').selectize({
