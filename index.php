@@ -53,7 +53,6 @@ body, html {height: 100%}
     </div>
   </div>
 </div>
-
 </body>
 <script type="text/javascript" src="js/jquery.js" ></script>
 <script type="text/javascript" src="js/jquery-ui.js" ></script>  
