@@ -1,3 +1,12 @@
+<?php
+	include("../include/dbcon.php");
+	if($_SESSION['ACCESS_TYPE'] != 2){
+		header("location:../redirecter.php");
+	}else{
+		
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <title>Research Professor</title>
@@ -47,10 +56,6 @@ function new_research (){
 	var prop_content = $('#proponents').val();
 	console.log(prop_content);
 }
-$(document).ready(function() {
-	$('#schedResDateTime').datepicker({
-	});
-});
 </script>
 <body class="w3-light-grey">
 <!-- Top container -->
@@ -62,6 +67,9 @@ $(document).ready(function() {
 	<div class="w3-hide-small">
 	<span class="fa fa-search w3-bar-item fa-lg" style="padding-top:15px !important;"></span>
 	<input class="w3-input w3-bar-item w3-block w3-rest" type="text" placeholder="Search" style="padding-left:10px !important; min-width:50%;">
+	<span class="w3-bar-item w3-right">
+		<a href="../logout.php" class="w3-small w3-text-black "style="text-decoration:none;"><i class="fa fa-sign-out fa-fx"></i> Logout</a>
+	</span>
 	</div>
 </div>
 
@@ -71,11 +79,17 @@ $(document).ready(function() {
     <div class="w3-col s4">
       <img src="../images/avatar.png" class="w3-circle w3-margin-right" style="width:46px">
     </div>
-    <div class="w3-col s8 w3-bar">
-      <span><strong>Sabilla Genesis</strong></span><br>
-	  <hr style="margin:0px;"/>
-	  <small>Research Professor</small>
-    </div>
+	<?php
+		$user_id = $_SESSION['logged_in_id'];
+		$sql = mysql_query("select * from users where id='$user_id' LIMIT 1");
+		while($row = mysql_fetch_array($sql)){
+	?>
+		<div class="w3-col s8 w3-bar">
+		  <span><strong><?php echo ucwords($row['first_name'].' '.$row['middle_name'].' '.$row['last_name'])?></strong></span><br>
+		  <hr style="margin:0px;"/>
+		  <small>Research Professor</small>
+		</div>
+	<?php }?>
   </div>
   <hr>
   <div class="w3-container">
@@ -161,6 +175,7 @@ $(document).ready(function() {
 <!--<script type="text/javascript" src="../js/jquery-ui.js" ></script>  -->
 <script type="text/javascript" src="../js/bootstrap-datetimepicker.js" ></script>  
 <script type="text/javascript" src="../js/actions.js"></script>
+<script type="text/javascript" src="researchActions.js"></script>
 <script src="../dist/js/select2.min.js"></script>
 <script>
 

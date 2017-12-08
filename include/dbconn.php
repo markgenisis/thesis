@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set("Asia/Manila");
-$servername = "localhost";
+/*$servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "repository";
@@ -13,4 +13,4 @@ session_start();
 if ($mysqli->connect_errno) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
     exit();
-}
+}*/

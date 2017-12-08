@@ -19,7 +19,7 @@
 			<div class="w3-row">
 			  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"> Middle Name:</b><b class="w3-left w3-hide-medium w3-hide-large w3-large"> Middle Name:</b></div>
 				<div class="w3-col s12 l7 m7">
-				  <input class="w3-input w3-border" name="m_name" id="m_name" type="text" placeholder="Middle Name" required />
+				  <input class="w3-input w3-border" name="m_name" id="m_name" type="text" placeholder="Middle Name"/>
 				</div>
 			</div>
 			<div class="w3-row">

@@ -13,24 +13,22 @@
 		</thead>
 		<tbody>
 			<?php
-			
+				$query = mysql_query("select * from users where user_type!='1'");
+				while($r = mysql_fetch_assoc($query)){
 			?>
-			<tr>
-				<td>fsamaniego</td>
-				<td>Franky S. Samaniego</td>
-				<td>Adviser</td>
-				<td>
-					<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
-				</td>
-			</tr>
-			<tr>
-				<td>fsamaniego</td>
-				<td>Franky S. Samaniego</td>
-				<td>Panel</td>
-				<td>
-					<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
-				</td>
-			</tr>
+				<tr>
+					<td><?php echo $r['username']?></td>
+					<td><?php echo ucwords($r['first_name'].' '.$r['middle_name'].' '.$r['last_name'])?></td>
+					<td>
+						<?php
+							echo getUserType($r['user_type']);
+						?>
+					</td>
+					<td>
+						<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
+					</td>
+				</tr>
+			<?php }?>
 		</tbody>
 	</table>
 </div>
