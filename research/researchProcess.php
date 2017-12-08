@@ -24,4 +24,16 @@
 			}
 		}
 	}
+	
+	
+	
+	
+	//function to exclude the selected panel chair in the panel member list
+	if(isset($_POST['excludeId'])){
+		$id = $_POST['excludeId'];
+		$sql = mysql_query("select * from users where user_type='3' and id != '$id'");
+		while($row = mysql_fetch_assoc($sql)){
+			echo "<option value='".$row['id']."'>".ucwords($row['first_name'].' '.$row['middle_name'].' '.$row['last_name'])."</option>";
+		}
+	}
 ?>

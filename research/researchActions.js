@@ -24,3 +24,21 @@ function research_users(){
 		});
 	}
 }
+
+
+/*
+function excludeSelected(){
+	var selected = $("#panelChair").val();
+	$.ajax({
+			url:'researchProcess.php',
+			type:'post',
+			cache:false,
+			data:'excludeId='+selected,
+			beforeSend:function(){
+				console.log("Excluding");
+			},
+			success:function(data){
+				console.log(data);
+			}
+		});
+}*/

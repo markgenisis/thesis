@@ -56,10 +56,6 @@ function new_research (){
 	var prop_content = $('#proponents').val();
 	console.log(prop_content);
 }
-$(document).ready(function() {
-	$('#schedResDateTime').datepicker({
-	});
-});
 </script>
 <body class="w3-light-grey">
 <!-- Top container -->
