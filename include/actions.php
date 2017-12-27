@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php 
 include "dbcon.php";
 
 if(isset($_POST['username'])){

@@ -25,6 +25,19 @@ function research_users(){
 	}
 }
 
+function saveCriteria(){
+	var criteria = $('input[name="criteriaName[]"]').map(function () {
+    			return this.value; // $(this).val()
+				}).get();
+	var criteriaDesc = $('input[name="criteriaDesc[]"]').map(function () {
+    			return this.value; // $(this).val()
+				}).get();	
+	var criteriaOrder = $('input[name="criteriaOrder[]"]').map(function () {
+    			return this.value; // $(this).val()
+				}).get();		
+							
+	console.log(criteriaOrder);			
+}
 
 /*
 function excludeSelected(){
