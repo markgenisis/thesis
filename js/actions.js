@@ -44,6 +44,17 @@ $(document).ready(function() {
 		  ['view', ['codeview']]
 		]
 	});
+	$('.criteriaDesc').summernote({
+		height: 150,
+		 toolbar: [
+		  ['style', ['bold', 'italic', 'underline', 'clear']],
+		  ['font', ['strikethrough']],
+		  ['fontsize', ['fontsize']],
+		  ['para', ['ul', 'ol', 'paragraph']],
+		  ['height', ['height']],
+		  ['view', ['codeview']]
+		]
+	});
 });
 // Get the Sidebar
 	var mySidebar = document.getElementById("mySidebar");

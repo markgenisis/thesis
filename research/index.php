@@ -166,6 +166,8 @@ function new_research (){
 					require('listRes.php'); 
 				}else if(isset($_GET['newSched'])){
 					require('newSched.php'); 
+				}else if(isset($_GET['newRub'])){
+					require('newRub.php'); 
 				}?>
 		</div>
 	</div>

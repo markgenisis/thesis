@@ -1,5 +1,3 @@
-
-
 <header class="w3-container" style="padding-top:22px">
 	<h5><b><i class="fa fa-book fa-fx"></i> New Reseach</b><hr style="margin:0px" /></h5>
 </header>
