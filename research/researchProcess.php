@@ -36,4 +36,54 @@
 			echo "<option value='".$row['id']."'>".ucwords($row['first_name'].' '.$row['middle_name'].' '.$row['last_name'])."</option>";
 		}
 	}
+	
+	
+	
+	
+	//inserting rubrics and criteria 
+	if(isset($_POST['templateMaxRate'])){
+		$criteriaArr = json_decode($_POST['criteria']);
+		$criteriaDescArr = json_decode($_POST['criteriaDesc']);
+		$criteriaOrdArr = json_decode($_POST['criteriaOrder']);
+		$templateName = $_POST['templateName'];
+		$templateDesc = $_POST['templateDesc'];
+		$templateMaxRate = $_POST['templateMaxRate'];
+		$researchProfId = $_SESSION['logged_in_id'];
+		$now = getDate();
+		$date = $now[0];
+		$numRows = mysql_num_rows(mysql_query("select * from rubrics where template_name = '$templateName'"));
+		if($numRows > 0){
+			echo "DUPLICATE";
+		}else{
+			$insert = mysql_query("insert into rubrics (template_name,description,max_rating,res_prof_id,date_added,date_modified) values ('$templateName','$templateDesc','$templateMaxRate','$researchProfId','$date','')");
+			if($insert){
+				//if success get the id of the inserted rubric
+				$q = mysql_query("select * from rubrics order by id desc limit 1");
+				while($row = mysql_fetch_assoc($q)){
+					$last_id = $row['id'];
+				}
+				$counter = 0;
+				$arrLen = count($criteriaArr);
+				for($x = 0; $x < $arrLen; $x++){
+					$criteria = $criteriaArr[$x];
+					$criteriaDesc = $criteriaDescArr[$x];
+					$criteriaOrd = $criteriaOrdArr[$x];
+					$insertCriteria = mysql_query("insert into `rubric_criteria` (`rubric_id`,`criteria`,`description`,`order`,`date_added`,`date_modified`) values ('$last_id','$criteria','$criteriaDesc','$criteriaOrd','$date','')");
+					$counter++;
+					if($insertCriteria){
+						
+					}else{
+						echo mysql_error();
+					}
+				}
+				if($counter == $arrLen){
+					echo "SUCCESS";
+				}
+			}else{
+				echo mysql_error();
+			}
+		}
+		
+		//foreach()
+	}
 ?>

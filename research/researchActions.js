@@ -26,17 +26,42 @@ function research_users(){
 }
 
 function saveCriteria(){
-	var criteria = $('input[name="criteriaName[]"]').map(function () {
+	var criteria = JSON.stringify($('input[name="criteriaName[]"]').map(function () {
     			return this.value; // $(this).val()
-				}).get();
-	var criteriaDesc = $('textarea[name="criteriaDesc[]"]').map(function () {
+				}).get());
+	var criteriaDesc = JSON.stringify($('textarea[name="criteriaDesc[]"]').map(function () {
     			return this.value; // $(this).val()
-				}).get();	
-	var criteriaOrder = $('input[name="criteriaOrder[]"]').map(function () {
+				}).get());	
+	var criteriaOrder = JSON.stringify($('input[name="criteriaOrder[]"]').map(function () {
     			return this.value; // $(this).val()
-				}).get();		
-							
-	console.log(criteriaDesc);	
+				}).get());		
+	var templateName = $('#templateName').val();
+	var templateDesc = $('#res_desc').val();
+	var templateMaxRate = $('#maxRate').val();
+	$.ajax({
+		url:'researchProcess.php',
+		type:'post',
+		cache:false,
+		data:'criteria='+criteria+'&criteriaDesc='+criteriaDesc+'&criteriaOrder='+criteriaOrder+'&templateName='+templateName+'&templateDesc='+templateDesc+'&templateMaxRate='+templateMaxRate,
+		beforeSend:function(){
+			
+		},
+		success:function(data){
+			console.log(data);
+			if(data == "SUCCESS"){
+				alert("Rubric Successfully Added!");
+				window.reload();
+			}else{
+				if(data == "DUPLICATE"){
+					alert("Rubric already Exists!");
+					$('#templateName').focus();
+				}else{
+					alert("Something went wrong!");
+					window.reload();
+				}
+			}
+		}
+	});
 }
 
 /*

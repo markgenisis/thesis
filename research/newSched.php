@@ -52,12 +52,16 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<div class="w3-row">
-			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Proponents:</b><b class="w3-left w3-hide-medium w3-hide-large w3-large"><span class="w3-text-red">*</span> Proponents:</b></div>
+			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Rubric:</b><b class="w3-left w3-hide-medium w3-hide-large w3-large"><span class="w3-text-red">*</span> Rubric:</b></div>
 				<div class="w3-col s12 l9 m9">
 					<select id="rubricRes" placeholder="Select Rubric">
 						<option value="">Select Rubric</option>
-						<option value="1">Proposal Defense</option>
-						<option value="2">Final Defense</option>
+						<?php
+							$sql = mysql_query("select * from rubrics");
+							while($row = mysql_fetch_assoc($sql)){
+						?>
+							<option value="<?php echo $row['id']?>"><?php echo $row['template_name']?></option>
+						<?php }?>
 					</select>
 					<script>
 					$('#rubricRes').selectize({
@@ -81,8 +85,12 @@ $(document).ready(function() {
 					</div>
 					<script type="text/javascript">
 						$(function () {
+							var date = new Date();
+							date.setDate(date.getDate());
 							$('#scheduleDate').datetimepicker({
 								//inline: true,
+								minDate: date,
+								defaultDate:date,
 								sideBySide: true
 								
 							});
