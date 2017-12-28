@@ -20,6 +20,11 @@ function addNewUserFromAdmin(){
 			},
 			success:function(data){
 				console.log(data);
+				if(data == "SUCCESS"){
+					alert("User successfully added!");
+				}else{
+					alert("User not added!");
+				}
 			}
 		});
 	}

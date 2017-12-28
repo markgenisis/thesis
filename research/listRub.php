@@ -13,7 +13,8 @@
 		<tbody>
 			<?php
 				$counter = 1;
-				$sql = mysql_query("select * from rubrics");
+				$idSes = $_SESSION['logged_in_id'];
+				$sql = mysql_query("select * from rubrics where res_prof_id='$idSes'");
 				while($row = mysql_fetch_assoc($sql)){
 			?>
 			<tr>
