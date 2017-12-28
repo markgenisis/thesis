@@ -18,7 +18,7 @@
 </header>
 <div class="w3-container" style="">
 	<div class="w3-row"  style="min-width:250px; max-width:800px;margin:0px auto;" >
-		<form action="javascript:void(0);" onsubmit="return saveCriteria()" class="w3-container w3-margin">
+		<form action="javascript:void(0);" onsubmit="return saveCriteria()" class="w3-container w3-margin" id="addRubForm">
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Template Name:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Template Name:</b></div>
 				<div class="w3-col s12 l9 m9">

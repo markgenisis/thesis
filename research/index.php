@@ -168,6 +168,8 @@ function new_research (){
 					require('newSched.php'); 
 				}else if(isset($_GET['newRub'])){
 					require('newRub.php'); 
+				}else if(isset($_GET['listRub'])){
+					require('listRub.php'); 
 				}?>
 		</div>
 	</div>

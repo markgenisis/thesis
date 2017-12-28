@@ -50,7 +50,8 @@ function saveCriteria(){
 			console.log(data);
 			if(data == "SUCCESS"){
 				alert("Rubric Successfully Added!");
-				window.reload();
+				document.getElementById("addRubForm").reset();
+				$('#res_desc').summernote('code', '');
 			}else{
 				if(data == "DUPLICATE"){
 					alert("Rubric already Exists!");
