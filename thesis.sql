@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 29, 2017 at 01:45 AM
+-- Generation Time: Dec 29, 2017 at 10:17 AM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -42,6 +42,70 @@ CREATE TABLE IF NOT EXISTS `courses` (
 
 INSERT INTO `courses` (`id`, `course`, `courseCode`, `dateAdded`, `dateModefied`) VALUES
 (1, 'Bachelor Of Science in Computer Science', 'BSCS', '1514510500', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `panels`
+--
+
+CREATE TABLE IF NOT EXISTS `panels` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `designation` varchar(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `panels`
+--
+
+INSERT INTO `panels` (`id`, `name`, `designation`) VALUES
+(1, '6', '4'),
+(2, '4', '3'),
+(3, '6', '3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `proponents`
+--
+
+CREATE TABLE IF NOT EXISTS `proponents` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `researchId` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `proponents`
+--
+
+INSERT INTO `proponents` (`id`, `researchId`, `name`) VALUES
+(1, '1', 'Franky S. Samaniego'),
+(2, '1', 'Emmanuel Christian O. Gregorio');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `researches`
+--
+
+CREATE TABLE IF NOT EXISTS `researches` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `description` longtext NOT NULL,
+  `course_id` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `researches`
+--
+
+INSERT INTO `researches` (`id`, `title`, `description`, `course_id`) VALUES
+(1, 'Albay Webpedia 2.0', '<p>asdashda kshdklajshd lka jshdlja sjdhlasd jhals kdjah sldkjhaslk djahs dlkajhs dk</p>', '1');
 
 -- --------------------------------------------------------
 

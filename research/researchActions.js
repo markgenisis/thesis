@@ -86,6 +86,11 @@ function new_research (){
 		},
 		success:function(data){
 			console.log(data);
+			if(data == "SUCCESS"){
+				alert("Rubric Successfully Added!");
+				document.getElementById("addRubForm").reset();
+				$('#res_desc').summernote('code', '');
+			}
 		}
 	});
 }
