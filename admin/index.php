@@ -88,8 +88,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 		<a href="?new_user=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-plus fa-fx"></i>  New User </a>
 		<a href="?list=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-list-ul fa-fx"></i>  User List </a>
 	  </div>
+	 <div class="w3-bar-item w3-button w3-padding w3-hover-blue" onclick="open_nav_accord('a3')">
+		<i class="fa fa-graduation-cap fa-fw"></i> <b>Courses</b> <i class="fa fa-caret-down w3-right fa-lg" style="position:relative;top:5px;"></i>
+	 </div>
+	  <div id="a3" class="w3-hide w3-white w3-animate-opacity w3-rightbar w3-border-blue" style="padding-left:20px;">
+		<a href="?newCourse=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-plus fa-fx"></i>  New Course </a>
+		<a href="?listCourse=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-list-ul fa-fx"></i>  Courses List </a>
+	  </div>
 	 <div class="w3-bar-item w3-button w3-padding w3-hover-blue" onclick="open_nav_accord('a2')">
-		<i class="fa fa-users fa-fw"></i> <b>Researches</b> <i class="fa fa-caret-down w3-right fa-lg" style="position:relative;top:5px;"></i>
+		<i class="fa fa-flask fa-fw"></i> <b>Researches</b> <i class="fa fa-caret-down w3-right fa-lg" style="position:relative;top:5px;"></i>
 	 </div>
 	  <div id="a2" class="w3-hide w3-white w3-animate-opacity w3-rightbar w3-border-blue" style="padding-left:20px;">
 		<a href="?listRes=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-list-ul fa-fx"></i>  Researches List </a>
@@ -260,6 +267,63 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 								<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
 							</td>
 						</tr>
+					</tbody>
+				</table>
+			</div>
+			<?php }?>
+			<?php
+				if(isset($_GET['newCourse'])){
+			?>
+				<header class="w3-container" style="padding-top:22px">
+					<h5><b><i class="fa fa-graduation-cap fa-fx"></i> New Course</b><hr style="margin:0px" /></h5>
+				</header>
+				<div class="w3-container" style="">
+					<div class="w3-row"  style="min-width:250px; max-width:600px;margin:0px auto;" >
+						<form action="javascript:void(0);" onsubmit="return addNewCourseAdmin()" class="w3-container w3-margin">
+							<div class="w3-row">
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Course Name:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Course Name:</b></div>
+								<div class="w3-col s12 l7 m7">
+								  <input class="w3-input w3-border" name="courseName" id="courseName" type="text" placeholder="" required />
+								</div>
+							</div>
+							<div class="w3-row">
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Course Code:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Course Code:</b></div>
+								<div class="w3-col s12 l7 m7">
+								  <input class="w3-input w3-border" name="courseCode" id="courseCode" type="text" placeholder="" required />
+								</div>
+							</div>
+							<button class="w3-button w3-right w3-section w3-blue w3-ripple w3-padding">Submit</button>
+
+							</form>
+					</div>
+				</div>
+			<?php }?>
+			<?php if(isset($_GET['listCourse'])){?>
+					<header class="w3-container" style="padding-top:22px">
+				<h5><b><i class="fa fa-list-ol fa-fx"></i> Users Lists</b><hr style="margin:0px" /></h5>
+			</header>
+			<div class="w3-container">
+				<table id="userListTbl" class="w3-table w3-text-black display dataTable no-footer">
+					<thead>
+						<tr>
+							<th>Course</th>
+							<th>Course Code</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+							$sql = mysql_query("SELECT * FROM `courses`");
+							while($row = mysql_fetch_assoc($sql)){
+						?>
+						<tr>
+							<td><?php echo $row['course'];?></td>
+							<td><?php echo $row['courseCode']?></td>
+							<td>
+								<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
+							</td>
+						</tr>
+						<?php }?>
 					</tbody>
 				</table>
 			</div>

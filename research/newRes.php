@@ -96,11 +96,11 @@
 				  <select id="course" placeholder="Select Course">
 						<option value="">Select Course</option>
 						<?php
-							//$sql = mysql_query("select * from courses");
-							//while($row = mysql_fetch_assoc($sql)){}
+							$sql = mysql_query("select * from courses");
+							while($row = mysql_fetch_assoc($sql)){
 						?>
-						<option value="AL">Alabama</option>
-						<option value="AL1">Alabama</option>
+							<option value="<?php echo $row['id']?>"><?php echo $row['courseCode'].' - '.$row['course']?></option>
+						<?php }?>
 					</select>
 					<script>
 					$('#course').selectize({

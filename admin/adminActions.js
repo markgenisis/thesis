@@ -29,3 +29,29 @@ function addNewUserFromAdmin(){
 		});
 	}
 }
+
+
+
+
+function addNewCourseAdmin(){
+	var courseName = $("#courseName").val();
+	var courseCode = $("#courseCode").val();
+	
+	$.ajax({
+		url:"adminProcess.php",
+		type:'post',
+		cache:false,
+		data:'courseName='+courseName+'&courseCode='+courseCode,
+		beforeSend:function(){
+			console.log("Adding Course");
+		},
+		success:function(data){
+			console.log(data);
+			if(data == "SUCCESS"){
+				alert("Course successfully added!");
+			}else{
+				alert("Course not added!");
+			}
+		}
+	});
+}

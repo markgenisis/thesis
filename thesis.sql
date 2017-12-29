@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 27, 2017 at 03:20 PM
+-- Generation Time: Dec 29, 2017 at 01:45 AM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -24,6 +24,28 @@ USE `thesis`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `courses`
+--
+
+CREATE TABLE IF NOT EXISTS `courses` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `course` varchar(255) NOT NULL,
+  `courseCode` varchar(10) NOT NULL,
+  `dateAdded` varchar(255) NOT NULL,
+  `dateModefied` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `course`, `courseCode`, `dateAdded`, `dateModefied`) VALUES
+(1, 'Bachelor Of Science in Computer Science', 'BSCS', '1514510500', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rubric_criteria`
 --
 
@@ -36,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `rubric_criteria` (
   `date_added` varchar(255) NOT NULL,
   `date_modified` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `rubric_criteria`
@@ -44,7 +66,12 @@ CREATE TABLE IF NOT EXISTS `rubric_criteria` (
 
 INSERT INTO `rubric_criteria` (`id`, `rubric_id`, `criteria`, `description`, `order`, `date_added`, `date_modified`) VALUES
 (3, '11', 'Design', 'To be able to understand the design of the system', '1', '1514386048', ''),
-(4, '11', 'Coding', 'Checking proper implementation of codes', '1', '1514386048', '');
+(4, '11', 'Coding', 'Checking proper implementation of codes', '1', '1514386048', ''),
+(5, '12', 'Temp 2 1st Criteria', 'asdasd', '1', '1514428345', ''),
+(6, '12', 'Temp 2 2nd Criteria', 'asdasd', '1', '1514428345', ''),
+(7, '13', 'Design', 'asdasd', '1', '1514428507', ''),
+(8, '14', '1', '2', '1', '1514428856', ''),
+(9, '14', '1', '2', '3', '1514428856', '');
 
 -- --------------------------------------------------------
 
@@ -61,14 +88,17 @@ CREATE TABLE IF NOT EXISTS `rubrics` (
   `date_added` varchar(255) NOT NULL,
   `date_modified` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `rubrics`
 --
 
 INSERT INTO `rubrics` (`id`, `template_name`, `description`, `max_rating`, `res_prof_id`, `date_added`, `date_modified`) VALUES
-(11, 'Template', '<p>asdasda</p>', '100', '2', '1514386048', '');
+(11, 'Template', '<p>asdasda</p>', '100', '2', '1514386048', ''),
+(12, 'Template 2', '<p>Template 2 Description</p>', '100', '2', '1514428345', ''),
+(13, 'Tem 3', '<p>asjdh</p>', '100', '2', '1514428507', ''),
+(14, 'Temp 4', '<p>asdad</p>', '100', '2', '1514428856', '');
 
 -- --------------------------------------------------------
 

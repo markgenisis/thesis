@@ -24,4 +24,26 @@
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	if(isset($_POST['courseName'])){
+		$courseName = $_POST['courseName'];
+		$courseCode = $_POST['courseCode'];
+		$now = getDate();
+		$date = $now[0];
+		$check = mysql_num_rows(mysql_query("SELECT * FROM `courses` WHERE `course`='$courseName' AND `courseCode`='$courseCode'"));
+		if($check > 0){
+			echo "D";
+		}else{
+			$insert = mysql_query("INSERT INTO `courses` (`course`,`courseCode`,`dateAdded`,`dateModefied`) VALUES ('$courseName','$courseCode','$date','')");
+			if($insert){
+				echo "SUCCESS";
+			}else{
+				echo mysql_error();
+			}
+		}
+	}
 ?>
