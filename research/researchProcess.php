@@ -1,7 +1,16 @@
 <?php
 	require('../include/dbcon.php');
 	
+	function getTableLastId($x){
+		$sql = mysql_query("SELECT * FROM `".$x."` ORDER BY `id` DESC LIMIT 1");
+		while($row = mysql_fetch_assoc($sql)){
+			return $row['id'];
+		}
+	}
 	
+	
+	
+	//print_r($_POST);
 	if(isset($_POST['addFromResearch'])){
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
@@ -84,6 +93,46 @@
 			}
 		}
 		
-		//foreach()
+	}
+	
+	
+	
+	
+	
+	if(isset($_POST['addNewResearch'])){
+		$proponentsArr = $_POST['prop_content'];
+		$panelMemArr = $_POST['panelMem'];
+		$props =explode(',',$proponentsArr);
+		$panelsMems =explode(',',$panelMemArr);
+		$title = $_POST['title'];
+		$res_desc = $_POST['res_desc'];
+		$adviser = $_POST['adviser'];
+		$panelChair = $_POST['panelChair'];
+		$course = $_POST['course'];
+		$check = mysql_num_rows(mysql_query("SELECT * FROM `researches` WHERE `title`='$title' AND `course_id`='$course'"));
+		if($check > 0){
+			echo "D";
+		}else{
+			$insertRes = mysql_query("INSERT INTO `researches` (`title`,`description`,`course_id`) VALUES ('$title','$res_desc','$course')");
+			if($insertRes){			
+				$lastId = getTableLastId('researches');
+				foreach($props as $key=>$value){
+					$insertProp = mysql_query("INSERT INTO `proponents` (`researchId`,`name`) VALUES ('$lastId','$value')");
+				}
+				$insertPanelChair = mysql_query("INSERT INTO `panels` (`name`,`designation`) VALUES ('$panelChair','4')");
+				if($insertPanelChair){
+					foreach($panelsMems as $key => $value){
+						$insertPanelMems = mysql_query("INSERT INTO `panels` (`name`,`designation`) VALUES ('$value','3')");
+					}
+					if($insertPanelMems){
+						echo "SUCCESS";
+					}
+				}else{
+					echo mysql_error();
+				}
+			}else{
+				echo mysql_error();
+			}
+		}
 	}
 ?>

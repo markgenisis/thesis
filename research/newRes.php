@@ -110,7 +110,6 @@
 					</script>
 				</div>
 			</div>
-
 			<button class="w3-button w3-right w3-section w3-blue w3-ripple w3-padding">Submit</button>
 
 			</form>

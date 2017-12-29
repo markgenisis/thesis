@@ -52,10 +52,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 }
 </style>
 <script>
-function new_research (){
-	var prop_content = $('#proponents').val();
-	console.log(prop_content);
-}
+
 </script>
 <body class="w3-light-grey">
 <!-- Top container -->

@@ -65,6 +65,34 @@ function saveCriteria(){
 	});
 }
 
+
+
+function new_research (){
+	var prop_content = $('#proponents').val();
+	var title = $('#res_title').val();
+	var res_desc = $('#res_desc').val();
+	var adviser = $('#adviser').val();
+	var panelChair = $('#panelChair').val();
+	var panelMem = $('#panelMem').val();
+	var course = $('#course').val();
+		
+	$.ajax({
+		url:'researchProcess.php',
+		type:'post',
+		cache:false,
+		data: "prop_content="+prop_content+'&title='+title+'&res_desc='+res_desc+'&adviser='+adviser+'&panelChair='+panelChair+'&panelMem='+panelMem+'&course='+course+'&addNewResearch=true',
+		beforeSend:function(){
+			console.log("adding new research");
+		},
+		success:function(data){
+			console.log(data);
+		}
+	});
+}
+
+
+
+
 /*
 function excludeSelected(){
 	var selected = $("#panelChair").val();
