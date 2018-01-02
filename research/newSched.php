@@ -7,7 +7,7 @@ $(document).ready(function() {
 </script>
 
 <header class="w3-container" style="padding-top:22px">
-	<h5><b><i class="fa fa-book fa-fx"></i> New Reseach</b><hr style="margin:0px" /></h5>
+	<h5><b><i class="fa fa-calendar fa-fx"></i> New Defense Schedule</b><hr style="margin:0px" /></h5>
 </header>
 <div class="w3-container" style="">
 	<div class="w3-row"  style="min-width:250px; max-width:800px;margin:0px auto;" >
@@ -16,8 +16,13 @@ $(document).ready(function() {
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Title:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Title:</b></div>
 				<div class="w3-col s12 l9 m9">
 				  <select id="schedResTitle" placeholder="Select Title of Research">
-						<option value="">Select a state...</option>
-						<option value="AL">Alabama</option>
+						<option value="">Select Research Title</option>
+						<?php
+							$sql = mysql_query("SELECT * FROM `researches`");
+							while($row = mysql_fetch_assoc($sql)){
+						?>
+							<option value="<?php echo $row['id']?>"><?php echo $row['title']?></option>
+						<?php }?>
 					</select>
 				  <!--<input class="w3-input w3-border" name="user_name" id="user_name" type="text" placeholder="Username" required />-->
 				  
