@@ -4,7 +4,7 @@ $(document).ready(function() {
 		url : "../data.php",
 		type : "GET",
 		success : function(data){
-			console.log($.parseJSON(data));
+			//console.log($.parseJSON(data));
 			$('#calendar').fullCalendar({
 				header: {
 					left: 'prev,next today',
@@ -90,4 +90,18 @@ $(document).ready(function() {
 			x.previousElementSibling.className = 
 			x.previousElementSibling.className.replace(" w3-blue", "");
 		}
+	}
+	
+	
+	
+	
+	function showSyForm(){
+		$("#activeSy").addClass("w3-hide");
+		$("#editSyForm").removeClass("w3-hide");
+	}
+	
+	
+	function showactiveSy(){
+		$("#activeSy").removeClass("w3-hide");
+		$("#editSyForm").addClass("w3-hide");
 	}

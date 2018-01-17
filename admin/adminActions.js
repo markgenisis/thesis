@@ -55,3 +55,25 @@ function addNewCourseAdmin(){
 		}
 	});
 }
+
+
+
+
+function changeSy(){
+	var sy = $('#newSY').val();
+	$.ajax({
+		url:"adminProcess.php",
+		type:"POST",
+		cache:false,
+		data:"changeSy="+sy,
+		success:function(data){
+			console.log(data);
+			if(data == "SUCCESS"){
+				alert("Active School Year successfully changed!");
+				window.location.reload();
+			}else{
+				alert("Sorry Try again later");
+			}
+		}
+	});
+}

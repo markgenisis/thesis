@@ -46,4 +46,16 @@
 			}
 		}
 	}
+	
+	
+	
+	if(isset($_POST['changeSy'])){
+		$sY = $_POST['changeSy'];
+		$syUpdate = mysql_query("UPDATE `activeyear` SET `yearRange`='$sY'");
+		if($syUpdate){
+			echo "SUCCESS";
+		}else{
+			echo mysql_error();
+		}
+	}
 ?>

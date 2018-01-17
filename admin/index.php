@@ -101,9 +101,52 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	  <div id="a2" class="w3-hide w3-white w3-animate-opacity w3-rightbar w3-border-blue" style="padding-left:20px;">
 		<a href="?listRes=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-list-ul fa-fx"></i>  Researches List </a>
 	  </div>
-   <!-- 
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
+   
+    <a href="javascript:void(0);" onclick="document.getElementById('activeSYModal').style.display='block';" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw"></i>  <b>Active SY</b></a>
+	
+	
+	
+	
+	<div id="activeSYModal" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:500px">
+
+      <div class="w3-center"><br>
+        <span onclick="document.getElementById('activeSYModal').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+      </div>
+		<div class="w3-container w3-padding-32">
+			<div class="w3-row" id="activeSy">
+				<h2><i class="fa fa-calendar fa-fw"></i>  ACTIVE SCHOOL YEAR</h2>
+				<div class="w3-center">
+					<h3><?php echo $_SESSION['activeYear'];?>  <a href="javascript:void(0);" ><i class="fa fa-pencil" onclick="showSyForm()"></i></a></h3>
+				</div>
+			</div>
+			<div class="w3-row w3-hide" id="editSyForm">
+				<h2><i class="fa fa-calendar fa-fw"></i>  CHANGE SCHOOL YEAR </h2>
+				<form action="javascript:void(0);" method="post" onsubmit="return changeSy()">
+					<label>Select School Year:</label>
+					<select id="newSY" class="w3-input w3-border">
+						<option>2017-2018</option>
+						<option>2018-2019</option>
+						<option>2019-2020</option>
+						<option>2020-2021</option>
+						<option>2021-2022</option>
+						<option>2022-2023</option>
+						<option>2023-2024</option>
+						<option>2024-2025</option>
+						<option>2025-2026</option>
+						<option>2026-2027</option>
+					</select></br>
+					<input type="submit" class="w3-btn w3-green" value="Save">
+					<button class="w3-btn w3-red" onclick="showactiveSy()">Cancel</button>
+				</form>
+			</div>
+		</div>
+    </div>
+  </div>
+	
+	
+	
+    <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Orders</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>

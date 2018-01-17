@@ -11,6 +11,10 @@
 	}else{
 		echo "not connected";
 	}*/
+	$sql = mysql_query("SELECT * FROM `activeyear`");
+	while($row = mysql_fetch_assoc($sql)){
+		$_SESSION['activeYear'] = $row['yearRange'];
+	}
 	
 	function getUserType($x){
 		switch($x){

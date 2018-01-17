@@ -20,6 +20,7 @@ function research_users(){
 			},
 			success:function(data){
 				console.log(data);
+				
 			}
 		});
 	}
@@ -87,14 +88,60 @@ function new_research (){
 		success:function(data){
 			console.log(data);
 			if(data == "SUCCESS"){
-				alert("Rubric Successfully Added!");
-				document.getElementById("addRubForm").reset();
-				$('#res_desc').summernote('code', '');
+				alert("Research Successfully Added!");
+				//document.getElementById("addNewResearchForm").reset();
+				//$('#res_desc').summernote('code', '');
+				window.location.reload();
+			}else if(data == "D"){
+				alert("Research already exists in database!");
+			}else{
+				alert("");
 			}
 		}
 	});
 }
 
+
+
+
+function checkLoad(){
+	var adviserId = $("#adviser").val();
+	$.ajax({
+		url:"researchProcess.php",
+		type:"POST",
+		data:'adviserId='+adviserId,
+		beforeSend:function(){
+			
+		},
+		success:function(data){
+			console.log(data);
+			if(data >= 10){	
+				alert("Adviser reached its maximum load!");
+				$('#newResSubmit').attr("disabled",true);
+			}else{
+				
+			}
+		}
+	});
+}
+
+
+
+
+function checkAvailability(){
+	var titleId=$('#schedResTitle').val();
+	$.ajax({
+		url:'researchProcess.php',
+		type:"POST",
+		data:'schedTitleId='+titleId,
+		beforeSend:function(){
+			
+		},
+		success:function(data){
+			console.log(data);
+		}
+	});
+}
 
 
 

@@ -11,11 +11,11 @@ $(document).ready(function() {
 </header>
 <div class="w3-container" style="">
 	<div class="w3-row"  style="min-width:250px; max-width:800px;margin:0px auto;" >
-		<form action="javascript:void(0);" onsubmit="return new_research()" class="w3-container w3-margin">
+		<form action="javascript:void(0);" onsubmit="return new_sched()" class="w3-container w3-margin">
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Title:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Title:</b></div>
 				<div class="w3-col s12 l9 m9">
-				  <select id="schedResTitle" placeholder="Select Title of Research">
+				  <select id="schedResTitle" onchange="document.getElementById('scheduleDate').removeAttribute('disabled')" placeholder="Select Title of Research">
 						<option value="">Select Research Title</option>
 						<?php
 							$sql = mysql_query("SELECT * FROM `researches`");
@@ -82,7 +82,7 @@ $(document).ready(function() {
 					<div class="form-group">
 						<div class='input-group' >
 							 <!-- <div id="datetimepicker1"></div>-->
-							<input type='text' id='scheduleDate' class="w3-input w3-border" required />
+							<input type='text' id='scheduleDate' disabled class="w3-input w3-border" required />
 							<span class="input-group-addon">
 								<span class="fa fa-calendar"></span>
 							</span>
@@ -96,14 +96,15 @@ $(document).ready(function() {
 								//inline: true,
 								minDate: date,
 								defaultDate:date,
-								sideBySide: true
-								
+								sideBySide: true,                
+							}).on('dp.change', function(e){
+								checkAvailability();
 							});
 						});
 					</script>
 				</div>
 			</div>
-			<button class="w3-button w3-right w3-section w3-blue w3-ripple w3-padding">Submit</button>
+			<button class="w3-button w3-right w3-section w3-blue w3-ripple w3-padding" id="newSchedBtn">Submit</button>
 
 			</form>
 	</div>

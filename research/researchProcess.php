@@ -109,20 +109,21 @@
 		$adviser = $_POST['adviser'];
 		$panelChair = $_POST['panelChair'];
 		$course = $_POST['course'];
+		$sy = $_SESSION['activeYear'];
 		$check = mysql_num_rows(mysql_query("SELECT * FROM `researches` WHERE `title`='$title' AND `course_id`='$course'"));
 		if($check > 0){
 			echo "D";
 		}else{
-			$insertRes = mysql_query("INSERT INTO `researches` (`title`,`description`,`course_id`) VALUES ('$title','$res_desc','$course')");
+			$insertRes = mysql_query("INSERT INTO `researches` (`title`,`description`,`course_id`,`adviserId`,`schoolYear`) VALUES ('$title','$res_desc','$course','$adviser','$sy')");
 			if($insertRes){			
 				$lastId = getTableLastId('researches');
 				foreach($props as $key=>$value){
 					$insertProp = mysql_query("INSERT INTO `proponents` (`researchId`,`name`) VALUES ('$lastId','$value')");
 				}
-				$insertPanelChair = mysql_query("INSERT INTO `panels` (`name`,`designation`) VALUES ('$panelChair','4')");
+				$insertPanelChair = mysql_query("INSERT INTO `panels` (`name`,`designation`,`researchId`) VALUES ('$panelChair','4','$lastId')");
 				if($insertPanelChair){
 					foreach($panelsMems as $key => $value){
-						$insertPanelMems = mysql_query("INSERT INTO `panels` (`name`,`designation`) VALUES ('$value','3')");
+						$insertPanelMems = mysql_query("INSERT INTO `panels` (`name`,`designation`,`researchId`) VALUES ('$value','3','$lastId')");
 					}
 					if($insertPanelMems){
 						echo "SUCCESS";
@@ -134,5 +135,26 @@
 				echo mysql_error();
 			}
 		}
+	}
+	
+	if(isset($_POST['adviserId'])){
+		$id = $_POST['adviserId'];
+		$activeSy = $_SESSION['activeYear'];
+		$query = mysql_num_rows(mysql_query("SELECT * FROM `researches` WHERE `adviserId`='$id' AND `schoolYear`='$activeSy'"));
+		echo $query;
+	}
+	
+	
+	
+	
+	
+	
+	if(isset($_POST['schedTitleId'])){
+		$researchId = $_POST['schedTitleId'];
+		$sql = mysql_query("SELECT * FROM `researches` WHERE `id`='$researchId'");
+		while($row = mysql_fetch_assoc($sql)){
+			$adviserId = $row['adviserId'];
+		}
+		//$sql1 = mysql_query("SELECT * FROM `panels` WHERE ``")
 	}
 ?>

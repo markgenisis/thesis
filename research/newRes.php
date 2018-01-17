@@ -3,7 +3,7 @@
 </header>
 <div class="w3-container" style="">
 	<div class="w3-row"  style="min-width:250px; max-width:800px;margin:0px auto;" >
-		<form action="javascript:void(0);" onsubmit="return new_research()" class="w3-container w3-margin">
+		<form action="javascript:void(0);" onsubmit="return new_research()" id="addNewResearchForm" class="w3-container w3-margin">
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Title:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Title:</b></div>
 				<div class="w3-col s12 l9 m9">
@@ -32,7 +32,7 @@
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Adviser:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Adviser:</b></div>
 				<div class="w3-col s12 l9 m9">
-				  <select id="adviser" placeholder="Select Adviser" required />
+				  <select id="adviser" placeholder="Select Adviser" onchange="return checkLoad()" required />
 						<option value="">Select Adviser</option>
 						<?php
 							$sql = mysql_query("select * from users where user_type='4'");
@@ -110,7 +110,7 @@
 					</script>
 				</div>
 			</div>
-			<button class="w3-button w3-right w3-section w3-blue w3-ripple w3-padding">Submit</button>
+			<button class="w3-button w3-right w3-section w3-blue w3-ripple w3-padding" id="newResSubmit">Submit</button>
 
 			</form>
 	</div>
