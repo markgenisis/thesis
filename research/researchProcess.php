@@ -151,10 +151,67 @@
 	
 	if(isset($_POST['schedTitleId'])){
 		$researchId = $_POST['schedTitleId'];
+		$researchType = $_POST['defType'];
+		$dateSched = $_POST['dateTobeSched'];
 		$sql = mysql_query("SELECT * FROM `researches` WHERE `id`='$researchId'");
 		while($row = mysql_fetch_assoc($sql)){
 			$adviserId = $row['adviserId'];
 		}
-		//$sql1 = mysql_query("SELECT * FROM `panels` WHERE ``")
+		$adviserResearchesArr = getAdviserAdvicee($adviserId);
+		$adviserScheds = getSchedHandled($adviserResearchesArr,$researchType);
+		$panelsArr = getPanels($researchId);
+		$eachPanelResearches = getPanelSched($panelsArr);
+		$panelsScheds = getSchedHandledPanelMem($eachPanelResearches,$researchType);
+		//print_r($panelsScheds);
+		$formatedDate =strtotime($dateSched);
+		$formatedDatePlus = strtotime($dateSched)+(3600*2);
+		//echo $formatedDate.' - '.date("F d, Y h:i A",$formatedDatePlus);
+		foreach($panelsScheds as $key => $value){
+			if(in_array($formatedDate,$value)){
+				$conflict[$key] = 1;
+			}
+		}
+		/*if(in_array($formatedDate,$adviserScheds)){
+			echo "Adviser not Available";
+		}*/
+		//maximum range of sched is 2 hours from the schedule datetime
+		foreach($adviserScheds as $key => $value){
+			$endTime = (strtotime($value) + (3600*2));
+			//echo $formatedDate.' == '.strtotime($value).', ';
+			if($formatedDate >= strtotime($value) && $formatedDate <= $endTime){
+				$adviserConflict[$adviserId]=1;
+			}
+		}
+		//adviserConflict holds value if there is a schedule Conflict
+		
+		
+		
+		foreach($panelsScheds as $key => $value){
+			foreach($value as $i => $j){
+				$endTime = (strtotime($j) + (3600*2));
+				if($formatedDate >= strtotime($j) && $formatedDate <= $endTime){
+					$panelConflict[$key] = 1;
+				}
+			}
+		}
+		if(is_array($adviserConflict) && !is_array($panelConflict)){
+			//only adviser is not available
+			echo 1;
+		}else if(is_array($adviserConflict) && is_array($panelConflict)){
+			//both adviser and panels have conflicts
+			echo 2;
+		}else if(!is_array($adviserConflict) && is_array($panelConflict)){
+			//only the panels have conflicts
+			echo 3;
+		}else{
+			echo 0;
+		}
+		//echo $formatedDate;
+		//echo strtotime($dateSched);
+		//print_r($adviserScheds);
+		//echo date("F d, Y",strtotime($dateSched));
+		//compare the dates from form to the dates from the db
+		//make flags to tell if available sched or not
+		//$getAdviserResearches = mysql_query("SELECT * FROM `panels` WHERE ``")
 	}
 ?>

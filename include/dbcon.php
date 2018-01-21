@@ -25,4 +25,73 @@
 			default:$usertype = "Unknown";return $usertype;
 		}
 	}
+	
+	
+	
+	
+	
+	function getPanels($x){
+		$sql = mysql_query("SELECT * FROM `panels` WHERE `researchId`='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$d[] = $row['name'];
+		}
+		return $d;
+	}
+	
+	
+	
+	function getPanelSched($x){
+		foreach($x as $key => $value){
+			$d[$value] = array();
+			$sql = mysql_query("SELECT `researchId` FROM `panels` WHERE `name`='$value'");
+			while($row = mysql_fetch_assoc($sql)){
+				//print_r($row);
+				//echo $row['name'].'='.$row['researchId'].' -> ';
+				array_push($d[$value],$row['researchId']);
+				//print_r($row['researchId']);
+			}
+		}
+		return $d;
+	}
+	
+	
+	
+	//getting the list of researches of a certain adviser id
+	function getAdviserAdvicee($x){
+		//$d[]="";
+		$sql = mysql_query("SELECT * FROM `researches` WHERE `adviserId`='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$d[] = $row['id'];
+		}
+		return $d;
+	}
+	
+	
+	
+	//getting the schedules of each handled researches
+	function getSchedHandled($x,$type){
+		//print_r($);
+		foreach($x as $key => $value){
+			$sql = mysql_query("SELECT * FROM `schedules` WHERE `researchId`='$value' AND `defenseType`='$type'");
+			while($row = mysql_fetch_assoc($sql)){
+				$sched[] = $row['dateSchedule'];
+			}
+		}
+		return $sched;
+	}
+	
+	
+	function getSchedHandledPanelMem($x,$type){
+		foreach($x as $key => $value){
+			$sched[$key] = array();
+			foreach($value as $i => $j){
+				$sql = mysql_query("SELECT * FROM `schedules` WHERE `researchId`='$j' AND `defenseType`='$type'");
+				while($row = mysql_fetch_assoc($sql)){
+					array_push($sched[$key],$row['dateSchedule']);
+				}
+			}
+			
+		}
+		return $sched;
+	}
 ?>

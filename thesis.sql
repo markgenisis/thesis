@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 29, 2017 at 10:17 AM
+-- Generation Time: Jan 21, 2018 at 02:15 AM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -20,6 +20,25 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 CREATE DATABASE `thesis` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `thesis`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activeyear`
+--
+
+CREATE TABLE IF NOT EXISTS `activeyear` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `yearRange` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `activeyear`
+--
+
+INSERT INTO `activeyear` (`id`, `yearRange`) VALUES
+(1, '2017-2018');
 
 -- --------------------------------------------------------
 
@@ -53,17 +72,19 @@ CREATE TABLE IF NOT EXISTS `panels` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `designation` varchar(2) NOT NULL,
+  `researchId` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `panels`
 --
 
-INSERT INTO `panels` (`id`, `name`, `designation`) VALUES
-(1, '6', '4'),
-(2, '4', '3'),
-(3, '6', '3');
+INSERT INTO `panels` (`id`, `name`, `designation`, `researchId`) VALUES
+(21, '6', '3', '8'),
+(20, '6', '3', '7'),
+(19, '4', '3', '7'),
+(18, '4', '4', '7');
 
 -- --------------------------------------------------------
 
@@ -76,15 +97,16 @@ CREATE TABLE IF NOT EXISTS `proponents` (
   `researchId` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `proponents`
 --
 
 INSERT INTO `proponents` (`id`, `researchId`, `name`) VALUES
-(1, '1', 'Franky S. Samaniego'),
-(2, '1', 'Emmanuel Christian O. Gregorio');
+(16, '7', 'Doctor Doctor'),
+(15, '7', 'Jerry B. Agsunod'),
+(14, '7', 'Richard Colasito');
 
 -- --------------------------------------------------------
 
@@ -97,15 +119,19 @@ CREATE TABLE IF NOT EXISTS `researches` (
   `title` varchar(255) NOT NULL,
   `description` longtext NOT NULL,
   `course_id` varchar(10) NOT NULL,
+  `adviserId` varchar(20) NOT NULL,
+  `schoolYear` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `researches`
 --
 
-INSERT INTO `researches` (`id`, `title`, `description`, `course_id`) VALUES
-(1, 'Albay Webpedia 2.0', '<p>asdashda kshdklajshd lka jshdlja sjdhlasd jhals kdjah sldkjhaslk djahs dlkajhs dk</p>', '1');
+INSERT INTO `researches` (`id`, `title`, `description`, `course_id`, `adviserId`, `schoolYear`) VALUES
+(9, 'asdasd', 'asdas', '4', '3', '2017-2018'),
+(7, 'AROS', '<ul><li>asdhgaks djasd</li><li>asd</li><li>a</li><li>sd</li><li>as</li><li>da</li><li>sd</li></ul>', '1', '5', '2017-2018'),
+(8, 'asda s', 'asd asd', '4', '5', '2017-2018');
 
 -- --------------------------------------------------------
 
@@ -163,6 +189,32 @@ INSERT INTO `rubrics` (`id`, `template_name`, `description`, `max_rating`, `res_
 (12, 'Template 2', '<p>Template 2 Description</p>', '100', '2', '1514428345', ''),
 (13, 'Tem 3', '<p>asjdh</p>', '100', '2', '1514428507', ''),
 (14, 'Temp 4', '<p>asdad</p>', '100', '2', '1514428856', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedules`
+--
+
+CREATE TABLE IF NOT EXISTS `schedules` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `researchId` varchar(20) NOT NULL,
+  `venue` varchar(255) NOT NULL,
+  `defenseType` varchar(10) NOT NULL,
+  `rubricId` varchar(20) NOT NULL,
+  `dateSchedule` varchar(50) NOT NULL,
+  `dateAdded` varchar(50) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `schedules`
+--
+
+INSERT INTO `schedules` (`id`, `researchId`, `venue`, `defenseType`, `rubricId`, `dateSchedule`, `dateAdded`, `status`) VALUES
+(1, '7', '', '2', '', 'January 21, 2018 10:30 AM', '', ''),
+(2, '8', '', '2', '', 'January 24, 2018 2:00 PM', '', '');
 
 -- --------------------------------------------------------
 

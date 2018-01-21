@@ -15,7 +15,7 @@ $(document).ready(function() {
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Title:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Title:</b></div>
 				<div class="w3-col s12 l9 m9">
-				  <select id="schedResTitle" onchange="document.getElementById('scheduleDate').removeAttribute('disabled')" placeholder="Select Title of Research">
+				  <select id="schedResTitle" placeholder="Select Title of Research">
 						<option value="">Select Research Title</option>
 						<?php
 							$sql = mysql_query("SELECT * FROM `researches`");
@@ -43,7 +43,7 @@ $(document).ready(function() {
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Defense Type:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Defense Type:</b></div>
 				<div class="w3-col s12 l9 m9">
-					<select id="schedResType" placeholder="Defense Type">
+					<select id="schedResType" onchange="document.getElementById('scheduleDate').removeAttribute('disabled')" placeholder="Defense Type">
 						<option value="">Select Panel Chairman</option>
 						<option value="1">Proposal Defense</option>
 						<option value="2">Final Defense</option>

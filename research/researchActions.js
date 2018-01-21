@@ -130,17 +130,37 @@ function checkLoad(){
 
 function checkAvailability(){
 	var titleId=$('#schedResTitle').val();
-	$.ajax({
-		url:'researchProcess.php',
-		type:"POST",
-		data:'schedTitleId='+titleId,
-		beforeSend:function(){
-			
-		},
-		success:function(data){
-			console.log(data);
-		}
-	});
+	var defType=$('#schedResType').val();
+	var dateSched=$('#scheduleDate').val();
+	if(titleId == '' || titleId == ' '){
+		alert("Please Select Research Title First");
+		$('#schedResTitle').focus();
+	}else{
+		$.ajax({
+			url:'researchProcess.php',
+			type:"POST",
+			data:'schedTitleId='+titleId+'&defType='+defType+'&dateTobeSched='+dateSched,
+			beforeSend:function(){
+				
+			},
+			success:function(data){
+				console.log(data);
+				if(data == 1 || data == '1'){
+					alert("Adviser have schedule on "+dateSched);
+					$("#newSchedBtn").attr('disabled','true');
+				}else if(data == 2 || data == '2'){
+					alert("Both Adviser and Panels have schedule on "+dateSched);
+					$('#newSchedBtn').attr("disabled",true);
+				}else if(data == 3 || data == '3'){
+					alert("Panels have schedule on "+dateSched);
+					$('#newSchedBtn').attr("disabled",true);
+				}else{
+					$('#newSchedBtn').attr("disabled",false);
+				}
+			}
+		});
+	}
+	
 }
 
 
