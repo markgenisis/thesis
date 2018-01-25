@@ -166,6 +166,8 @@
 		$formatedDate =strtotime($dateSched);
 		$formatedDatePlus = strtotime($dateSched)+(3600*2);
 		//echo $formatedDate.' - '.date("F d, Y h:i A",$formatedDatePlus);
+		$adviserConflict = "";
+		$panelConflict = "";
 		foreach($panelsScheds as $key => $value){
 			if(in_array($formatedDate,$value)){
 				$conflict[$key] = 1;

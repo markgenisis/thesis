@@ -165,6 +165,11 @@ function checkAvailability(){
 
 
 
+
+function new_sched(){
+	alert("GET ALL INPUTS");
+}
+
 /*
 function excludeSelected(){
 	var selected = $("#panelChair").val();
