@@ -175,25 +175,33 @@
 			echo "Adviser not Available";
 		}*/
 		//maximum range of sched is 2 hours from the schedule datetime
-		foreach($adviserScheds as $key => $value){
-			$endTime = (strtotime($value) + (3600*2));
-			//echo $formatedDate.' == '.strtotime($value).', ';
-			if($formatedDate >= strtotime($value) && $formatedDate <= $endTime){
-				$adviserConflict[$adviserId]=1;
+		if(is_array($adviserScheds)){
+			foreach($adviserScheds as $key => $value){
+				$endTime = (strtotime($value) + (3600*2));
+				//echo $formatedDate.' == '.strtotime($value).', ';
+				if($formatedDate >= strtotime($value) && $formatedDate <= $endTime){
+					$adviserConflict[$adviserId]=1;
+				}
 			}
+		}else{
+			
 		}
 		//adviserConflict holds value if there is a schedule Conflict
 		
 		
-		
-		foreach($panelsScheds as $key => $value){
-			foreach($value as $i => $j){
-				$endTime = (strtotime($j) + (3600*2));
-				if($formatedDate >= strtotime($j) && $formatedDate <= $endTime){
-					$panelConflict[$key] = 1;
+		if(is_array($panelsScheds)){
+			foreach($panelsScheds as $key => $value){
+				foreach($value as $i => $j){
+					$endTime = (strtotime($j) + (3600*2));
+					if($formatedDate >= strtotime($j) && $formatedDate <= $endTime){
+						$panelConflict[$key] = 1;
+					}
 				}
 			}
+		}else{
+			
 		}
+	
 		if(is_array($adviserConflict) && !is_array($panelConflict)){
 			//only adviser is not available
 			echo 1;
