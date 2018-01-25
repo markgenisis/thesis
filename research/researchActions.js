@@ -167,7 +167,30 @@ function checkAvailability(){
 
 
 function new_sched(){
-	alert("GET ALL INPUTS");
+	var schedInfo = $('#schedInfo').serializeArray();
+	
+	$.ajax({
+		url:'researchProcess.php',
+		type:'post',
+		cache:false,
+		data:schedInfo,
+		success:function(data){
+			console.log(data);
+			if(data = "SUCCESS"){
+				alert("Schedule Successfully Added!");
+				window.location.reload();
+				//$("#schedInfo")[0].reset();
+			}else if(data == 0 || data == '0'){
+				alert("Same schedule exists in database");
+				//$("#schedInfo")[0].reset();
+				window.location.reload();
+			}else{
+				alert("Please try again later");
+				//$("#schedInfo")[0].reset();
+				window.location.reload();
+			}
+		}
+	});
 }
 
 /*

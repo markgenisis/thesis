@@ -1,6 +1,32 @@
 <?php
 	require('../include/dbcon.php');
 	
+	
+	if(isset($_POST['scheResVenue'])){
+		$date = getDate();
+		$now = $date[0];
+		$schedResTitle = $_POST['schedResTitle'];
+		$scheResVenue = $_POST['scheResVenue'];
+		$schedResType = $_POST['schedResType'];
+		$rubricRes = $_POST['rubricRes'];
+		$scheduleDate = $_POST['scheduleDate'];
+		$check = mysql_query("SELECT * FROM `schedules` WHERE `researchId`='$schedResTitle' AND `dateSchedule`='$scheduleDate' AND `defenseType`='$schedResType'");
+		$num = mysql_num_rows($check);
+		if($num > 0){
+			echo 0;
+		}else{
+			$insert = mysql_query("INSERT INTO `schedules` (`researchId`,`venue`,`defenseType`,`rubricId`,`dateSchedule`,`dateAdded`,`status`) VALUES ('$schedResTitle','$scheResVenue','$schedResType','$rubricRes','$scheduleDate','$now','0')");
+			if($insert){
+				echo "SUCCESS";
+			}else{
+				mysql_error();
+			}
+		}
+	}
+	
+	
+	
+	
 	function getTableLastId($x){
 		$sql = mysql_query("SELECT * FROM `".$x."` ORDER BY `id` DESC LIMIT 1");
 		while($row = mysql_fetch_assoc($sql)){
@@ -224,4 +250,11 @@
 		//make flags to tell if available sched or not
 		//$getAdviserResearches = mysql_query("SELECT * FROM `panels` WHERE ``")
 	}
+	
+	
+	
+	
+	
+	
+	
 ?>

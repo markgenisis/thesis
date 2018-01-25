@@ -11,11 +11,11 @@ $(document).ready(function() {
 </header>
 <div class="w3-container" style="">
 	<div class="w3-row"  style="min-width:250px; max-width:800px;margin:0px auto;" >
-		<form action="javascript:void(0);" onsubmit="return new_sched()" class="w3-container w3-margin">
+		<form action="javascript:void(0);" onsubmit="return new_sched()" id="schedInfo" class="w3-container w3-margin">
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Title:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Title:</b></div>
 				<div class="w3-col s12 l9 m9">
-				  <select id="schedResTitle" placeholder="Select Title of Research">
+				  <select id="schedResTitle" name="schedResTitle" placeholder="Select Title of Research">
 						<option value="">Select Research Title</option>
 						<?php
 							$sql = mysql_query("SELECT * FROM `researches`");
@@ -43,7 +43,7 @@ $(document).ready(function() {
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Defense Type:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Defense Type:</b></div>
 				<div class="w3-col s12 l9 m9">
-					<select id="schedResType" onchange="document.getElementById('scheduleDate').removeAttribute('disabled')" placeholder="Defense Type">
+					<select id="schedResType" name="schedResType" onchange="document.getElementById('scheduleDate').removeAttribute('disabled')" placeholder="Defense Type">
 						<option value="">Select Panel Chairman</option>
 						<option value="1">Proposal Defense</option>
 						<option value="2">Final Defense</option>
@@ -59,7 +59,7 @@ $(document).ready(function() {
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Rubric:</b><b class="w3-left w3-hide-medium w3-hide-large w3-large"><span class="w3-text-red">*</span> Rubric:</b></div>
 				<div class="w3-col s12 l9 m9">
-					<select id="rubricRes" placeholder="Select Rubric">
+					<select id="rubricRes" name="rubricRes" placeholder="Select Rubric">
 						<option value="">Select Rubric</option>
 						<?php
 							$sql = mysql_query("select * from rubrics");
@@ -82,7 +82,7 @@ $(document).ready(function() {
 					<div class="form-group">
 						<div class='input-group' >
 							 <!-- <div id="datetimepicker1"></div>-->
-							<input type='text' id='scheduleDate' disabled class="w3-input w3-border" required />
+							<input type='text' id='scheduleDate' name='scheduleDate' disabled class="w3-input w3-border" required />
 							<span class="input-group-addon">
 								<span class="fa fa-calendar"></span>
 							</span>
