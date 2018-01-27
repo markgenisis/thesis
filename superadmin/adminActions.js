@@ -4,6 +4,7 @@ function addNewUserFromAdmin(){
 	var mname = $('#m_name').val();
 	var username = $('#user_name').val();
 	var usertype = $('#user_type').val();
+	var deptID=$("#dept_id").val();
 	var password = $('#user_pw').val();
 	var password_c = $('#user_pw_c').val();
 	
@@ -14,7 +15,7 @@ function addNewUserFromAdmin(){
 			url:'adminProcess.php',
 			type:'post',
 			cache:false,
-			data:'fname='+fname+'&lname='+lname+'&mname='+mname+'&username='+username+'&usertype='+usertype+'&password='+password+'&addFromAdmin=true',
+			data:'fname='+fname+'&lname='+lname+'&mname='+mname+'&username='+username+'&usertype='+usertype+'&password='+password+'&addFromAdmin=true&deptID='+deptID,
 			beforeSend:function(){
 				console.log("Adding");
 			},
@@ -56,7 +57,27 @@ function addNewCourseAdmin(){
 		}
 	});
 }
-
+function addNewDepartment(){
+	var deptName=$("#deptName").val();
+	$.ajax({
+		url:"adminProcess.php",
+		type:'post',
+		cache:false,
+		data:'deptName='+deptName,
+		beforeSend:function(){
+			console.log("Adding Department");
+		},
+		success:function(data){
+			console.log(data);
+			if(data == "SUCCESS"){
+				alert("Department successfully added!");
+				document.getElementById("deptForm").reset();
+			}else{
+				alert("Department not added!");
+			}
+		}
+	});
+}
 
 
 

@@ -11,6 +11,7 @@ if(isset($_POST['username'])){
 		while($row = mysql_fetch_array($sql)){
 			$_SESSION['ACCESS_TYPE']=$row['user_type'];
 			$_SESSION['logged_in_id']=$row['id'];
+			$_SESSION['department_id']=$row['deptID'];
 			echo $row['user_type'];
 		}
 	}else{

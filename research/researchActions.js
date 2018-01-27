@@ -20,7 +20,8 @@ function research_users(){
 			},
 			success:function(data){
 				console.log(data);
-				
+				alert("Account successfully added!");
+				document.getElementById("newUserForm").reset();
 			}
 		});
 	}

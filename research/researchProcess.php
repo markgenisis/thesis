@@ -51,7 +51,7 @@
 		if($check > 0){
 			echo "D";
 		}else{
-			$insert = mysql_query("INSERT INTO `users` (`first_name`,`middle_name`,`last_name`,`username`,`password`,`user_type`,`date_added`)VALUES ('$fname','$mname','$lname','$username','$password','$usertype','$date_now')");
+			$insert = mysql_query("INSERT INTO `users` (`first_name`,`middle_name`,`last_name`,`username`,`password`,`user_type`,`date_added`,`deptID`)VALUES ('$fname','$mname','$lname','$username','$password','$usertype','$date_now','{$_SESSION['department_id']}')");
 			if($insert){
 				echo "SUCCESS";
 			}else{

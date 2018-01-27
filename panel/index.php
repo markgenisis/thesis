@@ -92,7 +92,7 @@ $(document).ready(function() {
 		<div class="w3-col s8 w3-bar">
 		  <span><strong><?php echo ucwords($row['first_name'].' '.$row['middle_name'].' '.$row['last_name'])?></strong></span><br>
 		  <hr style="margin:0px;"/>
-		  <small></small>
+		  <small>Panel</small>
 		</div>
 	<?php }?>
   </div>

@@ -9,6 +9,7 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$usertype = $_POST['usertype'];
+		$deptID=$_POST['deptID'];
 		$d = getDate();
 		$date_now = $d[0];
 		
@@ -16,7 +17,7 @@
 		if($check > 0){
 			echo "D";
 		}else{
-			$insert = mysql_query("INSERT INTO `users` (`first_name`,`middle_name`,`last_name`,`username`,`password`,`user_type`,`date_added`,`deptID`)VALUES ('$fname','$mname','$lname','$username','$password','$usertype','$date_now','{$_SESSION['department_id']}')");
+			$insert = mysql_query("INSERT INTO `users` (`first_name`,`middle_name`,`last_name`,`username`,`password`,`user_type`,`date_added`,`deptID`)VALUES ('$fname','$mname','$lname','$username','$password','$usertype','$date_now','$deptID')");
 			if($insert){
 				echo "SUCCESS";
 			}else{
@@ -56,6 +57,12 @@
 			echo "SUCCESS";
 		}else{
 			echo mysql_error();
+		}
+	}
+	if(isset($_POST['deptName'])){
+		$dept=mysql_query("insert into departments values ('NULL','{$_POST['deptName']}')");	
+		if($dept){
+			echo "SUCCESS";
 		}
 	}
 ?>

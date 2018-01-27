@@ -8,6 +8,7 @@
 				<th>Username</th>
 				<th>Full Name</th>
 				<th>User Type</th>
+                <th>Department</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -24,6 +25,7 @@
 							echo getUserType($r['user_type']);
 						?>
 					</td>
+                    <td><?php echo getDept($r['deptID']); ?></td>
 					<td>
 						<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
 					</td>

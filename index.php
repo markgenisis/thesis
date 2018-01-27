@@ -1,10 +1,6 @@
 <?php
 	include "include/dbcon.php";
-	if(isset($_SESSION['ACCESS_TYPE'])){
-		header('location:redirecter.php');
-	}else{
-		//do nothing
-	}
+	include "redirecter.php";
 ?>
 <!DOCTYPE html>
 <html>

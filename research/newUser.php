@@ -3,7 +3,7 @@
 </header>
 <div class="w3-container" style="">
 	<div class="w3-row"  style="min-width:250px; max-width:600px;margin:0px auto;" >
-		<form action="javascript:void(0);" onsubmit="return research_users()" class="w3-container w3-margin">
+		<form action="javascript:void(0);" onsubmit="return research_users()" id="newUserForm" class="w3-container w3-margin">
 			<div class="w3-row">
 			  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> First Name:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> First Name:</b></div>
 				<div class="w3-col s12 l7 m7">

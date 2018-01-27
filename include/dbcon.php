@@ -94,4 +94,18 @@
 		}
 		return $sched;
 	}
+	function getName($x){
+		$sql=mysql_query("select * from users where id='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$d = $row['first_name']." ".$row['last_name'];
+		}
+		return $d;
+	}
+	function getDept($x){
+		$sql=mysql_query("select * from departments where id='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$d = $row['deptName'];
+		}
+		return $d;
+	}
 ?>
