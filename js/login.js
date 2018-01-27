@@ -27,14 +27,16 @@ function logmein(){
 					location="admin/";
 				}else if(data == "2"){
 					location="research/";
-				}else if(data == "3"){
+				}else if(data == "3GRANTED"){
 					location="panel/";
-				}else if(data == "4"){
+				}else if(data == "4GRANTED"){
 					location="adviser/";
 				}else if(data=="ERROR"){
 					$("#status_on_login").html("<div class='w3-panel w3-red w3-padding'>ACCESS DENIED!</div>").fadeIn("slow").delay(2000).hide("slow");
 					//setTimeout(function(){$("#loading_on_login").hide("slow");},2000);
 					document.getElementById("password").focus();
+				}else if(data =='3DENIED'){
+					$("#status_on_login").html("<div class='w3-panel w3-red w3-padding'>DENIED! PLEASE LOGIN ON SCHEDULE.</div>").fadeIn("slow").delay(2000).hide("slow");
 				}
 			}
 		});

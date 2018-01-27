@@ -1,6 +1,6 @@
 <?php
 	include "include/dbcon.php";
-	include "redirecter.php";
+	//include "redirecter.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,6 +33,7 @@ body, html {height: 100%}
 	 
       <div class="w3-container w3-padding-16" id="loginFormCon">
 		<form class="w3-form" id="login_form" method="" action="">
+        <div class="w3-container" style="display:none;" id="status_on_login"></div>
 			<div class="w3-padding-16" style="position:relative;">
 				<span class="fa fa-user w3-opacity fa-lg w3-text-black" style="position:absolute;right:10px;top:40%;z-index:99999;" id="i1"></span>
 				<input class="w3-input w3-medium w3-round w3-opacity" style="padding-left: 20px;" type="text" id="username" name="username" placeholder="Username" required>
@@ -44,7 +45,7 @@ body, html {height: 100%}
 			<div class="w3-padding-16" style="position:relative;">
 				<button class="w3-btn w3-btn-block w3-btn-small w3-grey w3-block w3-hover-opacity" type="button" onClick="logmein()"><i class="fa fa-unlock fa-lg"></i> <span class="w3-wide" style=""> LOGIN</span></button>
 			</div>
-			<div class="w3-container" style="display:none;" id="status_on_login"></div>
+			
 		</form>
     </div>
   </div>

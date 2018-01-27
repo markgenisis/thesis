@@ -7,11 +7,15 @@
 			header("location:research/");
 			die();
 		}else if($_SESSION['ACCESS_TYPE'] == 3){
-			header("location:panel/");
-			die();
-		}else if($_SESSION['ACCESS_TYPE'] == 3){
-			header("location:adviser/");
-			die();
+			if($_SESSION['LOGIN_ACCESS']=='GRANTED'){
+				header("location:panel/");
+				die();
+			}
+		}else if($_SESSION['ACCESS_TYPE'] == 4){
+			if($_SESSION['LOGIN_ACCESS']=='GRANTED'){
+				header("location:adviser/");
+				die();
+			}
 		}else if($_SESSION['ACCESS_TYPE'] == 0){
 			header("location:superadmin/");
 			die();
