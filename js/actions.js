@@ -4,7 +4,7 @@ $(document).ready(function() {
 		url : "../data.php",
 		type : "GET",
 		success : function(data){
-			//console.log($.parseJSON(data));
+			console.log($.parseJSON(data));
 			$('#calendar').fullCalendar({
 				header: {
 					left: 'prev,next today',

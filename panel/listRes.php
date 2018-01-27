@@ -6,26 +6,42 @@
 	<table id="researchTbl" class="w3-table w3-text-black display dataTable no-footer">
 		<thead>
 			<tr>
-				<th>ID</th>
+				<!--<th>ID</th>-->
 				<th>Title</th>
 				<th>Proponents</th>
-				<th>Recommendations</th>
+				<th>Status</th>
+				<th></th>
 				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php
-			
+				//print_r($_SESSION);
+				$panelId = $_SESSION['logged_in_id'];
+				$sql = mysql_query("SELECT * FROM `panels` WHERE `name`='$panelId'");
+				while($row = mysql_fetch_assoc($sql)){
+					$researchId = $row['researchId'];
+					$title = getTitle($researchId);
+					$proponents = getPropo($researchId);
+					
 			?>
 			<tr>
-				<td>1</td>
-				<td>AWP 2.0</td>
-				<td>Franky Samaniego, </td>
+				<!--<td><?php echo $row['id'];?></td>-->
+				<td><?php echo $title;?></td>
+				<td><?php echo implode(", ",$proponents); ?></td>
 				<td>ashdaks dhalkshdla kshd alksdj</td>
 				<td>
-					<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
+					<?php
+						
+					?>
+				</td>
+				<td>
+					<button class="w3-button w3-green w3-small"><span class="fa fa-eye fa-fx"></span> View</button>
 				</td>
 			</tr>
+			<?php
+				}
+			?>
 		</tbody>
 	</table>
 </div>

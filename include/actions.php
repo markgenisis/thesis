@@ -41,7 +41,7 @@ if(isset($_POST['username'])){
 				}
 				}else echo $_SESSION['LOGIN_ACCESS']="DENIED";;
 			}else{
-				echo "NOT  3";	
+			//	echo "NOT  3";	
 			}
 		}
 	}else{
