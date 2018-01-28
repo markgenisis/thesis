@@ -119,6 +119,12 @@
 		}
 	}
 	
+	function getSched($x){
+		$sql=mysql_query("select * from schedules where researchId='$x'");
+		while($row=mysql_fetch_assoc($sql)){
+			return $row['dateSchedule'];
+		}
+	}
 	
 	
 	function getPropo($x){

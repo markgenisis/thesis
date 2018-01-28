@@ -133,7 +133,10 @@ $(document).ready(function() {
 			<?php
 				if(isset($_GET['listRes'])){
 					require('listRes.php'); 
+				}else if(isset($_GET['rating'])){
+					require('rating.php');
 				}
+				
 			?>
 		</div>
 	</div>

@@ -30,10 +30,11 @@
 				<td><?php echo $title;?></td>
 				<td><?php echo implode(", ",$proponents); ?></td>
 				<td>ashdaks dhalkshdla kshd alksdj</td>
-				<td>
+				<td class="w3-center">
 					<?php
 						
 					?>
+                    <a href="?rating=<?php echo $row['researchId']; ?>" class="w3-btn w3-green" style="text-decoration:none;">Rating</a>&nbsp;<a class="w3-btn w3-orange" href="" style="text-decoration:none; color:#fff;" >Comments</a>
 				</td>
 				<td>
 					<button class="w3-button w3-green w3-small"><span class="fa fa-eye fa-fx"></span> View</button>
