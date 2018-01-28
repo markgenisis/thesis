@@ -12,20 +12,23 @@ if(isset($_POST['username'])){
 			$_SESSION['ACCESS_TYPE']=$row['user_type'];
 			$_SESSION['logged_in_id']=$row['id'];
 			$_SESSION['department_id']=$row['deptID'];
-			echo $row['user_type'];
+			//echo $row['user_type'];
+			$id= $row['id'];
 			if($row['user_type']=='4' || $row['user_type']=='3'){
-				$getRID=mysql_query("select * from panels where name='{$row['id']}'");
+				$getRID=mysql_query("select * from panels where name='$id'");
 				$nosched=mysql_num_rows($getRID);
+				
 				if($nosched){
 				while($sc=mysql_fetch_assoc($getRID)){
+					//echo $sc['researchId'];
 					$researchID=$sc['researchId'];
 					$getSched=mysql_query("select * from schedules where researchId='$researchID'");
 					$num=mysql_num_rows($getSched);
-					 $num;
+					//echo $num;
 					if($num){
 						while($sched=mysql_fetch_assoc($getSched)){
 							$time=strtotime($sched['dateSchedule']);
-							//echo $time." - ".$now;
+							//echo date('F j, Y h:i A',$time)." - ".date('F j, Y h:i A',$now).' ';
 							 $upto=$time+7200;
 							if($time>$now || $upto > $now){
 								  $access=$time-$now;
@@ -33,13 +36,17 @@ if(isset($_POST['username'])){
 									 echo $_SESSION['LOGIN_ACCESS']="GRANTED"; 	 
 								} else{
 										echo $_SESSION['LOGIN_ACCESS']="DENIED";
-									}
-							}else  {echo $_SESSION['LOGIN_ACCESS']="DENIED";}
+								}
+							}else{
+								echo $_SESSION['LOGIN_ACCESS']="DENIED";
+							}
 						}
-					}else {  echo $_SESSION['LOGIN_ACCESS']="DENIED"; }
+					}else {  echo $_SESSION['LOGIN_ACCESS']="DENIED"; 
+					}
 					
 				}
-				}else {echo $_SESSION['LOGIN_ACCESS']="DENIED";}
+				}else {echo $_SESSION['LOGIN_ACCESS']="DENIED";
+				}
 			}else{
 			//	echo "NOT  3";	
 			}
