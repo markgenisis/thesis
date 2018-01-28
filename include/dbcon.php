@@ -108,4 +108,25 @@
 		}
 		return $d;
 	}
+	
+	
+	
+	
+	function getTitle($x){
+		$sql = mysql_query("SELECT * FROM `researches` WHERE `id`='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			return $row['title'];
+		}
+	}
+	
+	
+	
+	function getPropo($x){
+		//return $x;
+		$sql = mysql_query("SELECT * FROM `proponents` WHERE `researchId`='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$prop[] = $row['name'];
+		}
+		return $prop;
+	}
 ?>
