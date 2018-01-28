@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2018 at 07:16 AM
+-- Generation Time: Jan 28, 2018 at 02:35 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -102,7 +102,10 @@ INSERT INTO `panels` (`id`, `name`, `designation`, `researchId`) VALUES
 (18, '4', '4', '7'),
 (22, '6', '4', '10'),
 (23, '6', '3', '10'),
-(24, '4', '3', '10');
+(24, '4', '3', '10'),
+(25, '6', '4', '11'),
+(26, '13', '3', '11'),
+(27, '6', '3', '11');
 
 -- --------------------------------------------------------
 
@@ -124,7 +127,8 @@ INSERT INTO `proponents` (`id`, `researchId`, `name`) VALUES
 (16, '7', 'Doctor Doctor'),
 (15, '7', 'Jerry B. Agsunod'),
 (14, '7', 'Richard Colasito'),
-(17, '10', 'Gen');
+(17, '10', 'Gen'),
+(18, '11', 'Gavin');
 
 -- --------------------------------------------------------
 
@@ -149,7 +153,8 @@ INSERT INTO `researches` (`id`, `title`, `description`, `course_id`, `adviserId`
 (9, 'asdasd', 'asdas', '4', '3', '2017-2018'),
 (7, 'AROS', '<ul><li>asdhgaks djasd</li><li>asd</li><li>a</li><li>sd</li><li>as</li><li>da</li><li>sd</li></ul>', '1', '5', '2017-2018'),
 (8, 'asda s', 'asd asd', '4', '5', '2017-2018'),
-(10, 'Multi Events', '<p>asada', '1', '5', '2017-2018');
+(10, 'Multi Events', '<p>asada', '1', '5', '2017-2018'),
+(11, 'Nanny Wanna', '', '1', '5', '2017-2018');
 
 -- --------------------------------------------------------
 
@@ -230,7 +235,8 @@ CREATE TABLE `schedules` (
 INSERT INTO `schedules` (`id`, `researchId`, `venue`, `defenseType`, `rubricId`, `dateSchedule`, `dateAdded`, `status`) VALUES
 (1, '7', '', '2', '', 'January 21, 2018 10:30 AM', '', ''),
 (2, '8', '', '2', '', 'January 24, 2018 2:00 PM', '', ''),
-(3, '10', 'CESD', '2', '12', '01/26/2018 1:07 PM', '1516939656', '0');
+(3, '10', 'CESD', '2', '12', '01/26/2018 1:07 PM', '1516939656', '0'),
+(4, '11', 'CESD', '2', '12', '01/28/2018 09:30 AM', '1517057979', '0');
 
 -- --------------------------------------------------------
 
@@ -355,17 +361,17 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `panels`
 --
 ALTER TABLE `panels`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `proponents`
 --
 ALTER TABLE `proponents`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `researches`
 --
 ALTER TABLE `researches`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `rubrics`
 --
@@ -380,7 +386,7 @@ ALTER TABLE `rubric_criteria`
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --
