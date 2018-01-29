@@ -105,3 +105,35 @@ $(document).ready(function() {
 		$("#activeSy").removeClass("w3-hide");
 		$("#editSyForm").addClass("w3-hide");
 	}
+	function getRatings(){
+		//var id=ids.split(",");
+		
+		var data=$("#ratingsForm").serializeArray();
+		
+		$.ajax({
+			type: "POST",
+			url: "../panel/actions.php",
+			data: data,
+			success: function(data){
+			console.log(data);
+				$("#msgForm").show().html("<div class='w3-panel w3-green w3-padding'>Ratings has been saved!</div>");
+				setTimeout(function(){$("#msgForm").hide('slow');},2000);
+				setTimeout(function(){location.reload();},3000);
+				}
+			});
+	}
+	function getComment(){
+		var comment=$("#comments").val();
+		var rId=$("#researchId").val();
+		$.ajax({
+			type: "POST",
+			url: "../panel/actions.php",
+			data: "comments="+comment+"&rID="+rId,
+			success: function(data){
+				console.log(data);
+				if(data=='SUCCESS'){
+					location.reload();
+				}
+			}
+		});
+	}
