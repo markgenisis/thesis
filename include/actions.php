@@ -24,13 +24,13 @@ if(isset($_POST['username'])){
 					$researchID=$sc['researchId'];
 					$getSched=mysql_query("select * from schedules where researchId='$researchID'");
 					$num=mysql_num_rows($getSched);
-					//echo $num;
+					/*echo $num;
 					if($num){
 						while($sched=mysql_fetch_assoc($getSched)){
 							$time=strtotime($sched['dateSchedule']);
 							//echo date('F j, Y h:i A',$time)." - ".date('F j, Y h:i A',$now).' ';
 							 $upto=$time+7200;
-							if($time>$now || $upto > $now){
+							/*if($time>$now || $upto > $now){
 								  $access=$time-$now;
 								if($access<1800){ 
 									 echo $_SESSION['LOGIN_ACCESS']="GRANTED";
@@ -46,7 +46,7 @@ if(isset($_POST['username'])){
 						}
 					}else {  echo $_SESSION['LOGIN_ACCESS']="DENIED"; 
 					 die();		
-					}
+					}*/
 					
 				}
 				}else {echo $_SESSION['LOGIN_ACCESS']="DENIED";

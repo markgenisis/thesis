@@ -27,7 +27,14 @@
 	}
 	
 	
-	
+
+	function getChair($x){
+		$sql = mysql_query("SELECT * FROM `panels` WHERE `researchId`='$x' AND `designation`='4'");
+		while($row = mysql_fetch_assoc($sql)){
+			$d = $row['name'];
+		}
+		return getName($d);
+	}
 	
 	
 	function getPanels($x){
@@ -36,6 +43,14 @@
 			$d[] = $row['name'];
 		}
 		return $d;
+	}
+	
+	function getMems($x){
+		$sql = mysql_query("SELECT * FROM `panels` WHERE `researchId`='$x' AND `designation`='3'");
+		while($row = mysql_fetch_assoc($sql)){
+			$d[] = $row['name'];
+		}
+		return getName($d);
 	}
 	
 	
@@ -95,10 +110,20 @@
 		return $sched;
 	}
 	function getName($x){
-		$sql=mysql_query("select * from users where id='$x'");
-		while($row = mysql_fetch_assoc($sql)){
-			$d = $row['first_name']." ".$row['last_name'];
+		if(is_array($x)){
+			foreach($x as $key => $value){
+				$sql=mysql_query("select * from users where id='$value'");
+					while($row = mysql_fetch_assoc($sql)){
+					$d[] = $row['first_name']." ".$row['last_name'];
+				}
+			}
+		}else{
+			$sql=mysql_query("select * from users where id='$x'");
+			while($row = mysql_fetch_assoc($sql)){
+				$d[] = $row['first_name']." ".$row['last_name'];
+			}
 		}
+		
 		return $d;
 	}
 	function getDept($x){
@@ -134,5 +159,42 @@
 			$prop[] = $row['name'];
 		}
 		return $prop;
+	}
+	
+	function getResearchId($x){
+		$sql = mysql_query("SELECT * FROM `schedules` WHERE `id`='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$title = $row['researchId'];
+		}
+		return $title;
+	}
+	
+	
+	
+	function getAdviser($x){
+		$sql = mysql_query("SELECT * FROM `researches` WHERE `id`='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$d = $row['adviserId'];
+		}
+		return getName($d);
+	}
+	
+	
+	function getSchedDate($x){
+		$sql = mysql_query("SELECT * FROM `schedules` WHERE `id`='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$d = $row['dateSchedule'];
+		}
+		$date = date('F j, Y @ h:i A',strtotime($d));
+		return $date;
+	}
+	
+	
+	function getRubric($x){
+		$sql = mysql_query("SELECT * FROM `schedules` WHERE `id`='$x'");
+		while($row = mysql_fetch_array($sql)){
+			$d = $row['rubricId'];
+		}
+		return $d;
 	}
 ?>

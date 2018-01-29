@@ -135,6 +135,8 @@ $(document).ready(function() {
 					require('listRes.php'); 
 				}else if(isset($_GET['rating'])){
 					require('rating.php');
+				}else if(isset($_GET['viewSched'])){
+					require('viewSched.php');
 				}
 				
 			?>
