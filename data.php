@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	//session_start();
 	require("include/dbcon.php");
 	//$con = mysql_connect('localhost','root','');
 	//$link  = mysql_select_db('lecs',$con);

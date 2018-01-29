@@ -137,6 +137,8 @@ $(document).ready(function() {
 					require('rating.php');
 				}else if(isset($_GET['viewSched'])){
 					require('viewSched.php');
+				}else if(isset($_GET['comments'])){
+					require('comments.php');
 				}
 				
 			?>

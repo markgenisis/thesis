@@ -1,25 +1,24 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jan 28, 2018 at 02:34 AM
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Host: 127.0.0.1
+-- Generation Time: Jan 29, 2018 at 03:20 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `thesis`
 --
-CREATE DATABASE `thesis` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `thesis`;
 
 -- --------------------------------------------------------
 
@@ -27,11 +26,10 @@ USE `thesis`;
 -- Table structure for table `activeyear`
 --
 
-CREATE TABLE IF NOT EXISTS `activeyear` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `yearRange` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+CREATE TABLE `activeyear` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `yearRange` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `activeyear`
@@ -43,17 +41,38 @@ INSERT INTO `activeyear` (`id`, `yearRange`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(3) NOT NULL,
+  `paneld` int(3) NOT NULL,
+  `researchId` int(3) NOT NULL,
+  `comment` text NOT NULL,
+  `date` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `paneld`, `researchId`, `comment`, `date`) VALUES
+(1, 13, 11, 'sadasdasd', '1517235033'),
+(2, 13, 11, 'What the F''! asdasd . asda. sd s', '1517235047');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `courses`
 --
 
-CREATE TABLE IF NOT EXISTS `courses` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `courses` (
+  `id` int(10) UNSIGNED NOT NULL,
   `course` varchar(255) NOT NULL,
   `courseCode` varchar(10) NOT NULL,
   `dateAdded` varchar(255) NOT NULL,
-  `dateModefied` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `dateModefied` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `courses`
@@ -68,11 +87,10 @@ INSERT INTO `courses` (`id`, `course`, `courseCode`, `dateAdded`, `dateModefied`
 -- Table structure for table `departments`
 --
 
-CREATE TABLE IF NOT EXISTS `departments` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
-  `deptName` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+CREATE TABLE `departments` (
+  `id` int(3) NOT NULL,
+  `deptName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `departments`
@@ -88,13 +106,12 @@ INSERT INTO `departments` (`id`, `deptName`) VALUES
 -- Table structure for table `panels`
 --
 
-CREATE TABLE IF NOT EXISTS `panels` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `panels` (
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `designation` varchar(2) NOT NULL,
-  `researchId` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+  `researchId` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `panels`
@@ -118,12 +135,11 @@ INSERT INTO `panels` (`id`, `name`, `designation`, `researchId`) VALUES
 -- Table structure for table `proponents`
 --
 
-CREATE TABLE IF NOT EXISTS `proponents` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `proponents` (
+  `id` int(11) UNSIGNED NOT NULL,
   `researchId` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+  `name` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proponents`
@@ -142,22 +158,24 @@ INSERT INTO `proponents` (`id`, `researchId`, `name`) VALUES
 -- Table structure for table `ratings`
 --
 
-CREATE TABLE IF NOT EXISTS `ratings` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ratings` (
+  `id` int(11) UNSIGNED NOT NULL,
   `researchId` varchar(20) NOT NULL,
-  `categoryId` varchar(20) NOT NULL,
+  `criteriaId` varchar(20) NOT NULL,
   `rubricId` varchar(20) NOT NULL,
   `panelId` varchar(20) NOT NULL,
   `type` varchar(20) NOT NULL,
   `rating` varchar(5) NOT NULL,
-  `dateOfRating` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `dateOfRating` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ratings`
 --
 
+INSERT INTO `ratings` (`id`, `researchId`, `criteriaId`, `rubricId`, `panelId`, `type`, `rating`, `dateOfRating`) VALUES
+(1, '11', '5', '12', '13', '2', '80', '1517233593'),
+(2, '11', '6', '12', '13', '2', '98', '1517233593');
 
 -- --------------------------------------------------------
 
@@ -165,15 +183,14 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 -- Table structure for table `researches`
 --
 
-CREATE TABLE IF NOT EXISTS `researches` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `researches` (
+  `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` longtext NOT NULL,
   `course_id` varchar(10) NOT NULL,
   `adviserId` varchar(20) NOT NULL,
-  `schoolYear` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `schoolYear` varchar(40) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `researches`
@@ -189,19 +206,44 @@ INSERT INTO `researches` (`id`, `title`, `description`, `course_id`, `adviserId`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rubrics`
+--
+
+CREATE TABLE `rubrics` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `template_name` varchar(255) NOT NULL,
+  `description` longtext NOT NULL,
+  `max_rating` varchar(3) NOT NULL,
+  `res_prof_id` varchar(10) NOT NULL,
+  `date_added` varchar(255) NOT NULL,
+  `date_modified` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rubrics`
+--
+
+INSERT INTO `rubrics` (`id`, `template_name`, `description`, `max_rating`, `res_prof_id`, `date_added`, `date_modified`) VALUES
+(11, 'Template', '<p>asdasda</p>', '100', '2', '1514386048', ''),
+(12, 'Template 2', '<p>Template 2 Description</p>', '100', '2', '1514428345', ''),
+(13, 'Tem 3', '<p>asjdh</p>', '100', '2', '1514428507', ''),
+(14, 'Temp 4', '<p>asdad</p>', '100', '2', '1514428856', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rubric_criteria`
 --
 
-CREATE TABLE IF NOT EXISTS `rubric_criteria` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `rubric_criteria` (
+  `id` int(10) UNSIGNED NOT NULL,
   `rubric_id` varchar(10) NOT NULL,
   `criteria` varchar(255) NOT NULL,
   `description` longtext NOT NULL,
   `order` varchar(3) NOT NULL,
   `date_added` varchar(255) NOT NULL,
-  `date_modified` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `date_modified` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rubric_criteria`
@@ -219,47 +261,19 @@ INSERT INTO `rubric_criteria` (`id`, `rubric_id`, `criteria`, `description`, `or
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rubrics`
---
-
-CREATE TABLE IF NOT EXISTS `rubrics` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `template_name` varchar(255) NOT NULL,
-  `description` longtext NOT NULL,
-  `max_rating` varchar(3) NOT NULL,
-  `res_prof_id` varchar(10) NOT NULL,
-  `date_added` varchar(255) NOT NULL,
-  `date_modified` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
-
---
--- Dumping data for table `rubrics`
---
-
-INSERT INTO `rubrics` (`id`, `template_name`, `description`, `max_rating`, `res_prof_id`, `date_added`, `date_modified`) VALUES
-(11, 'Template', '<p>asdasda</p>', '100', '2', '1514386048', ''),
-(12, 'Template 2', '<p>Template 2 Description</p>', '100', '2', '1514428345', ''),
-(13, 'Tem 3', '<p>asjdh</p>', '100', '2', '1514428507', ''),
-(14, 'Temp 4', '<p>asdad</p>', '100', '2', '1514428856', '');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `schedules`
 --
 
-CREATE TABLE IF NOT EXISTS `schedules` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `schedules` (
+  `id` int(10) UNSIGNED NOT NULL,
   `researchId` varchar(20) NOT NULL,
   `venue` varchar(255) NOT NULL,
   `defenseType` varchar(10) NOT NULL,
   `rubricId` varchar(20) NOT NULL,
   `dateSchedule` varchar(50) NOT NULL,
   `dateAdded` varchar(50) NOT NULL,
-  `status` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `status` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `schedules`
@@ -277,8 +291,8 @@ INSERT INTO `schedules` (`id`, `researchId`, `venue`, `defenseType`, `rubricId`,
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
@@ -287,10 +301,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_type` varchar(10) NOT NULL,
   `date_added` varchar(255) NOT NULL,
   `date_modified` varchar(255) NOT NULL,
-  `deptID` int(3) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+  `deptID` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -308,6 +320,147 @@ INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `username`,
 (14, 'Super', '', 'Admin', 'sAdmin', 'sAdmin', '0', '', '', 1),
 (17, 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', '3', '1517033499', '', 1);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `activeyear`
+--
+ALTER TABLE `activeyear`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `panels`
+--
+ALTER TABLE `panels`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `proponents`
+--
+ALTER TABLE `proponents`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `researches`
+--
+ALTER TABLE `researches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rubrics`
+--
+ALTER TABLE `rubrics`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rubric_criteria`
+--
+ALTER TABLE `rubric_criteria`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `schedules`
+--
+ALTER TABLE `schedules`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `activeyear`
+--
+ALTER TABLE `activeyear`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `panels`
+--
+ALTER TABLE `panels`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT for table `proponents`
+--
+ALTER TABLE `proponents`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT for table `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `researches`
+--
+ALTER TABLE `researches`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `rubrics`
+--
+ALTER TABLE `rubrics`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `rubric_criteria`
+--
+ALTER TABLE `rubric_criteria`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `schedules`
+--
+ALTER TABLE `schedules`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
