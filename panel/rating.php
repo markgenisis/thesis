@@ -22,7 +22,29 @@
             <td>&nbsp;&nbsp;&nbsp;<?php echo getSched($_GET['rating']); ?></td>
         </tr>
      </table>
-<?php 
-	}
+     <?php 
+	}$criteria=mysql_query("select * from schedules where researchId='{$_GET['rating']}'");
+	while($row=mysql_fetch_assoc($criteria)){
+		$rubricsID=$row['rubricId'];
+		$rubs=mysql_query("select * from rubrics where id='$rubricsID'");
+		while($rub=mysql_fetch_assoc($rubs)){
 ?>
+    <h3>Criteria (<?php echo $rub['template_name']; ?>)</h3>
+     <hr />
+     <div class="w3-row">
+     <div class="w3-col w3-container" style="max-width:600px; margin-left:100px;">
+     <form class="w3-container">
+     <?php
+	 	$rubcri=mysql_query("select * from rubric_criteria where rubric_id='$rubricsID'");
+		while($rc=mysql_fetch_assoc($rubcri)){
+	 ?>
+     <label><?php echo $rc['criteria']; ?>:</label>
+     	<input type="text" class="w3-input w3-margin-bottom" placeholder="<?php echo $rc['description']; ?>" />
+     <?php } ?>
+     <button class="w3-btn w3-green w3-margin-top">Save Rating</button>
+     </form>
+     </div>
+     </div>
+<?php } 
+	}?>
 </div>
