@@ -1,9 +1,11 @@
 <?php
 	$schedId = $_GET['viewSched'];
 	$researchId = getResearchId($schedId);
+	echo $researchId;
 	print_r($_SESSION);
 	$panelId = $_SESSION['logged_in_id'];
 	$rubricId = getRubric($schedId);
+	echo $rubricId;
 ?>
 <div class="w3-container">
 	<h3><i class="fa fa-info-circle fa-fx"></i> Research Information<hr style="margin-top:3px;"/></h3>
@@ -53,12 +55,31 @@
 						?>
 						<tr><td><?php echo $r['criteria']?></td>
 						<?php
-						$sql = mysql_query("SELECT * FROM `ratings` WHERE `panelId`='$panelId' AND `researchId`='$researchId' AND `categoryId`='$id'");
-						while($row = mysql_fetch_assoc($sql)){
+						$sql = mysql_query("SELECT * FROM `ratings` WHERE `panelId`='$panelId' AND `researchId`='$researchId' AND `criteriaId`='$id' AND `type`='1'");
+						$num = mysql_num_rows($sql);
+						if($num>0){
+							while($row = mysql_fetch_assoc($sql)){
+						
+						
 							?>
-							<td>aa</td>
-							<td>aa</td>
+							<td><?php echo $row['rating']; ?></td>
 							<?php
+						}
+						}else{
+							echo "<td></td>";						}
+						?>
+						<?php
+						$sqlq = mysql_query("SELECT * FROM `ratings` WHERE `panelId`='$panelId' AND `researchId`='$researchId' AND `criteriaId`='$id' AND `type`='2'");
+						$num2 = mysql_num_rows($sqlq);
+						if($num2 > 0){
+							while($row1 = mysql_fetch_assoc($sqlq)){
+						
+						
+							?>
+							<td><?php echo $row1['rating']; ?></td>
+							<?php
+						}}else{
+							echo "<td></td>";
 						}
 						?>
 						</tr>
@@ -66,6 +87,22 @@
 					}					
 				?>
 			</table>
+		</div>
+	</div>
+	<h3><i class="fa fa-info-circle fa-fx"></i> Comments<hr style="margin-top:3px;"/></h3>
+	<div class="w3-container">
+		<div class="w3-container " style="margin:0px auto;">
+			<div class="w3-row">
+				<?php
+					$comments=mysql_query("select * from comments where researchId='$researchId'");
+					while($row=mysql_fetch_assoc($comments)){
+				?>
+				<div class="w3-panel w3-leftbar w3-sand w3-xlarge w3-serif">
+					<p><i>"<?php echo $row['comment']; ?>"</i></p>
+					<span class="w3-right" style="font-size:12px; font-style:italic;"><?php echo date("m/d/Y h:i A",$row['date']); ?></span>
+				</div>
+				<?php } ?>
+			</div>
 		</div>
 	</div>
 </div>
