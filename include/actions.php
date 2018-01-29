@@ -33,19 +33,24 @@ if(isset($_POST['username'])){
 							if($time>$now || $upto > $now){
 								  $access=$time-$now;
 								if($access<1800){ 
-									 echo $_SESSION['LOGIN_ACCESS']="GRANTED"; 	 
+									 echo $_SESSION['LOGIN_ACCESS']="GRANTED";
+									 die();									 
 								} else{
 										echo $_SESSION['LOGIN_ACCESS']="DENIED";
+										 die();		
 								}
 							}else{
 								echo $_SESSION['LOGIN_ACCESS']="DENIED";
+								 die();		
 							}
 						}
 					}else {  echo $_SESSION['LOGIN_ACCESS']="DENIED"; 
+					 die();		
 					}
 					
 				}
 				}else {echo $_SESSION['LOGIN_ACCESS']="DENIED";
+				 die();		
 				}
 			}else{
 			//	echo "NOT  3";	
