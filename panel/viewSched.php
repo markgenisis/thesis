@@ -1,11 +1,8 @@
 <?php
 	$schedId = $_GET['viewSched'];
 	$researchId = getResearchId($schedId);
-	echo $researchId;
-	print_r($_SESSION);
 	$panelId = $_SESSION['logged_in_id'];
 	$rubricId = getRubric($schedId);
-	echo $rubricId;
 ?>
 <div class="w3-container">
 	<h3><i class="fa fa-info-circle fa-fx"></i> Research Information<hr style="margin-top:3px;"/></h3>
