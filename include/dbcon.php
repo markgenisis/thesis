@@ -28,6 +28,15 @@
 	
 	
 
+	function getSchedId($x){
+		$sql = mysql_query("SELECT * FROM `schedules` WHERE `researchId`='$x' ORDER BY `id` DESC LIMIT 1");
+		while($row = mysql_fetch_assoc($sql)){
+			$id = $row['id'];
+		}
+		return $id;
+	}
+	
+	
 	function getChair($x){
 		$sql = mysql_query("SELECT * FROM `panels` WHERE `researchId`='$x' AND `designation`='4'");
 		while($row = mysql_fetch_assoc($sql)){
