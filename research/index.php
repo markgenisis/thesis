@@ -167,6 +167,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					require('newRub.php'); 
 				}else if(isset($_GET['listRub'])){
 					require('listRub.php'); 
+				}else if(isset($_GET['viewSched'])){
+					require('../viewSched.php'); 
 				}?>
 		</div>
 	</div>
