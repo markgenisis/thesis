@@ -70,7 +70,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <img src="../images/avatar.png" class="w3-circle w3-margin-right" style="width:46px">
     </div>
     <div class="w3-col s8 w3-bar">
-      <span><strong><?php echo getName($_SESSION['logged_in_id']); ?></strong></span><br>
+      <span><strong><?php echo implode(" ",getName($_SESSION['logged_in_id'])); ?></strong></span><br>
 	  <hr style="margin:0px;"/>
 	  <small>Chairman</small>
     </div>
