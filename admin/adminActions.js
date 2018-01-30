@@ -78,3 +78,20 @@ function changeSy(){
 		}
 	});
 }
+
+
+
+
+function getDtr(){
+	var data = $('#dtrForm').serializeArray();
+	$.ajax({
+		url:'getDtr.php',
+		type:'POST',
+		cache:false,
+		data:data,
+		success:function(data){
+			console.log(data);
+			$("#dtrHolder").html(data);
+		}
+	});
+}

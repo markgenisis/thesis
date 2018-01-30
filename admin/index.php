@@ -103,6 +103,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	  </div>
    
     <a href="javascript:void(0);" onclick="document.getElementById('activeSYModal').style.display='block';" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw"></i>  <b>Active SY</b></a>
+    <a href="?dtr=true" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o fa-fw"></i>  <b>DTR</b></a>
 	
 	
 	
@@ -137,7 +138,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 						<option>2026-2027</option>
 					</select></br>
 					<input type="submit" class="w3-btn w3-green" value="Save">
-					<button class="w3-btn w3-red" onclick="showactiveSy()">Cancel</button>
+					<a href="javascript:void(0);" class="w3-btn w3-red" onclick="showactiveSy()">Cancel</a>
 				</form>
 			</div>
 		</div>
@@ -175,6 +176,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 				</header>
 				<div id="calendar"></div>
 			<?php }?>
+			<?php 
+				if(isset($_GET['viewSched'])){
+					require('../viewSched.php'); 
+				}
+			?>
 			<?php if(isset($_GET['new_user'])){?>
 				<header class="w3-container" style="padding-top:22px">
 					<h5><b><i class="fa fa-user fa-fx"></i> New User</b><hr style="margin:0px" /></h5>
@@ -341,6 +347,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					</div>
 				</div>
 			<?php }?>
+			<?php if(isset($_GET['dtr'])){
+				require("dtr.php");
+			}?>
 			<?php if(isset($_GET['listCourse'])){?>
 					<header class="w3-container" style="padding-top:22px">
 				<h5><b><i class="fa fa-list-ol fa-fx"></i> Users Lists</b><hr style="margin:0px" /></h5>

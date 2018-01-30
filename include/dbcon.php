@@ -118,6 +118,43 @@
 		}
 		return $sched;
 	}
+	
+	
+	
+	function getMonthText($x){
+		$month = "";
+		if($x == 1){
+			$month = "January";
+		}else if($x == 2){
+			$month = "February";
+		}else if($x == 3){
+			$month = "March";
+		}else if($x == 4){
+			$month = "April";
+		}else if($x == 5){
+			$month = "May";
+		}else if($x == 6){
+			$month = "June";
+		}else if($x == 7){
+			$month = "July";
+		}else if($x == 8){
+			$month = "August";
+		}else if($x == 9){
+			$month = "September";
+		}else if($x == 10){
+			$month = "October";
+		}else if($x == 11){
+			$month = "November";
+		}else if($x == 12){
+			$month = "December";
+		}else{
+			$month = "Unknown";
+		}
+		return $month;
+	}
+	
+	
+	
 	function getName($x){
 		if(is_array($x)){
 			foreach($x as $key => $value){
