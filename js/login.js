@@ -23,6 +23,9 @@ function logmein(){
 			data: data,
 			success: function(data){
 				console.log(data);
+				if(data == "0"){
+					location="superadmin/";
+				}
 				if(data == "1"){
 					location="admin/";
 				}else if(data == "2"){

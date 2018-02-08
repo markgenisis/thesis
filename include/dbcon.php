@@ -180,7 +180,13 @@
 		return $d;
 	}
 	
-	
+	function getDescipline($x){
+	$sql=mysql_query("select * from descipline where id='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$d = $row['descipline'];
+		}
+		return $d;
+	}
 	
 	
 	function getTitle($x){

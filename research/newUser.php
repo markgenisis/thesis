@@ -28,7 +28,7 @@
 				  <input class="w3-input w3-border" name="user_name" id="user_name" type="text" placeholder="Username" required />
 				</div>
 			</div>
-			<div class="w3-row">
+			<!-- <div class="w3-row">
 			  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> User Type:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> User Type:</b></div>
 				<div class="w3-col s12 l7 m7">
 					<select class="w3-select w3-border" name="user_type" id="user_type" required />
@@ -37,7 +37,7 @@
 					  <option value="4">Adviser</option>
 					</select>
 				</div>
-			</div>
+			</div> -->
 			<div class="w3-row">
 			  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Password:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Password:</b></div>
 				<div class="w3-col s12 l7 m7">

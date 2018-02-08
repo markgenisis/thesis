@@ -1,3 +1,30 @@
+<script>
+	function getPanelList(){
+		var panelChairId = $('#panelChair').val();
+		var adviser = $('#adviser').val();
+		$.ajax({
+			url:'getPanelList.php',
+			type:'post',
+			data:'panelToExclude='+panelChairId+'&adviserId='+adviser,
+			success:function(data){
+				console.log(data);
+				$('#listOfPanels').html(data);
+			}
+		});
+	}
+	function getPanelChair(){
+		var adviser = $('#adviser').val();
+		$.ajax({
+			url:'getPanelList.php',
+			type:'post',
+			data:'getAdviserId='+adviser,
+			success:function(data){
+				console.log(data);
+				$('#listOfChair').html(data);
+			}
+		});
+	}
+</script>
 <header class="w3-container" style="padding-top:22px">
 	<h5><b><i class="fa fa-book fa-fx"></i> New Reseach</b><hr style="margin:0px" /></h5>
 </header>
@@ -32,62 +59,36 @@
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Adviser:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Adviser:</b></div>
 				<div class="w3-col s12 l9 m9">
-				  <select id="adviser" placeholder="Select Adviser" onchange="return checkLoad()" required />
+				  <select id="adviser" placeholder="Select Adviser" class="w3-input w3-border" onchange=" return getPanelChair()" required />
 						<option value="">Select Adviser</option>
 						<?php
-							$sql = mysql_query("select * from users where user_type='4'");
+							$sql = mysql_query("select * from users where user_type=' '");
 							while($row = mysql_fetch_assoc($sql)){
+								$check=mysql_num_rows(mysql_query("select * from researches where adviserId='{$row['id']}'"));
+								if($check<=10){
 						?>
 							<option value="<?php echo $row['id'];?>"><?php echo ucwords($row['first_name'].' '.$row['middle_name'].' '.$row['last_name'])?></option>
-						<?php }?>
+						<?php } }?>
 					</select>
 				  
 				<script>
-				$('#adviser').selectize({
+				/* $('#adviser').selectize({
 					persist: false,
 					maxItems: 1,
-				});
+				}); */
 				</script>
 				</div>
 			</div>
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Panel Chair:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Panel Chair:</b></div>
 				<div class="w3-col s12 l9 m9">
-					<select id="panelChair" onchange="" placeholder="Select Panel Chairman">
-						<option value="">Select Panel Chairman</option>
-						<?php
-							$sql = mysql_query("select * from users where user_type='3'");
-							while($row = mysql_fetch_assoc($sql)){
-						?>
-							<option value="<?php echo $row['id'];?>"><?php echo ucwords($row['first_name'].' '.$row['middle_name'].' '.$row['last_name'])?></option>
-						<?php }?>
-					</select>
-					<script>
-					$('#panelChair').selectize({
-						persist: false,
-						maxItems: 1,
-					});
-					</script>
+					<div id="listOfChair"></div>
 				</div>
 			</div>
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Panel Members:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Panel Members:</b></div>
 				<div class="w3-col s12 l9 m9">
-				  <select id="panelMem"  placeholder="Select Panel Members">
-						<option value="">Select Panel Members</option>
-						<?php
-							$sql = mysql_query("select * from users where user_type='3'");
-							while($row = mysql_fetch_assoc($sql)){
-						?>
-							<option value="<?php echo $row['id'];?>"><?php echo ucwords($row['first_name'].' '.$row['middle_name'].' '.$row['last_name'])?></option>
-						<?php }?>
-					</select>
-					<script>
-					$('#panelMem').selectize({
-						persist: false,
-						maxItems: 2,
-					});
-					</script>
+				  <div id="listOfPanels"></div>
 				</div>
 			</div>
 			<div class="w3-row">
@@ -96,7 +97,7 @@
 				  <select id="course" placeholder="Select Course">
 						<option value="">Select Course</option>
 						<?php
-							$sql = mysql_query("select * from courses");
+							$sql = mysql_query("select * from courses where descipline='{$_SESSION['descipline_id']}'");
 							while($row = mysql_fetch_assoc($sql)){
 						?>
 							<option value="<?php echo $row['id']?>"><?php echo $row['courseCode'].' - '.$row['course']?></option>

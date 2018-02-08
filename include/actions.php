@@ -12,6 +12,7 @@ if(isset($_POST['username'])){
 			$_SESSION['ACCESS_TYPE']=$row['user_type'];
 			$_SESSION['logged_in_id']=$row['id'];
 			$_SESSION['department_id']=$row['deptID'];
+			$_SESSION['descipline_id']=$row['descipline'];
 			echo $row['user_type'];
 			$id= $row['id'];
 			if($row['user_type']=='4' || $row['user_type']=='3'){

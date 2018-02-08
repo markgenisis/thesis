@@ -4,6 +4,7 @@ function addNewUserFromAdmin(){
 	var mname = $('#m_name').val();
 	var username = $('#user_name').val();
 	var usertype = $('#user_type').val();
+	var desciplineID=$("#desciplineID").val();
 	var password = $('#user_pw').val();
 	var password_c = $('#user_pw_c').val();
 	
@@ -14,7 +15,7 @@ function addNewUserFromAdmin(){
 			url:'adminProcess.php',
 			type:'post',
 			cache:false,
-			data:'fname='+fname+'&lname='+lname+'&mname='+mname+'&username='+username+'&usertype='+usertype+'&password='+password+'&addFromAdmin=true',
+			data:'fname='+fname+'&lname='+lname+'&mname='+mname+'&username='+username+'&usertype='+usertype+'&password='+password+'&addFromAdmin=true&desciplineID='+desciplineID,
 			beforeSend:function(){
 				console.log("Adding");
 			},
@@ -37,12 +38,13 @@ function addNewUserFromAdmin(){
 function addNewCourseAdmin(){
 	var courseName = $("#courseName").val();
 	var courseCode = $("#courseCode").val();
+	var descipline=$("#Descipline").val();
 	
 	$.ajax({
 		url:"adminProcess.php",
 		type:'post',
 		cache:false,
-		data:'courseName='+courseName+'&courseCode='+courseCode,
+		data:'courseName='+courseName+'&courseCode='+courseCode+"&Descipline="+descipline,
 		beforeSend:function(){
 			console.log("Adding Course");
 		},
@@ -50,6 +52,7 @@ function addNewCourseAdmin(){
 			console.log(data);
 			if(data == "SUCCESS"){
 				alert("Course successfully added!");
+				location.reload();
 			}else{
 				alert("Course not added!");
 			}
@@ -57,8 +60,30 @@ function addNewCourseAdmin(){
 	});
 }
 
-
-
+function addNewDescipline(){
+	//var courseName = $("#courseName").val();
+	var descipline = $("#descipline").val();
+	
+	$.ajax({
+		url:"adminProcess.php",
+		type:'post',
+		cache:false,
+		data:'descipline='+descipline,
+		beforeSend:function(){
+			console.log("Adding descipline");
+		},
+		success:function(data){
+			console.log(data);
+			if(data == "SUCCESS"){
+				alert("Descipline successfully added!");
+				location="?listDescipline=true";
+			}else{
+				alert("Course not added!");
+				location="?listDescipline=true";
+			}
+		}
+	});
+}
 
 function changeSy(){
 	var sy = $('#newSY').val();
@@ -80,7 +105,17 @@ function changeSy(){
 }
 
 
-
+function getCourses(){
+	var desc=$("#desciplineID").val();
+	$.ajax({
+		type: "POST",
+		url: "adminProcess.php",
+		data: "getCourse="+desc,
+		success: function(data){
+			$("#courseID").html(data);
+		}
+	});
+}
 
 function getDtr(){
 	var data = $('#dtrForm').serializeArray();

@@ -70,7 +70,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <img src="../images/avatar.png" class="w3-circle w3-margin-right" style="width:46px">
     </div>
     <div class="w3-col s8 w3-bar">
-      <span><strong><?php echo getName($_SESSION['logged_in_id']); ?></strong></span><br>
+      <span><strong><?php echo implode(" ",getName($_SESSION['logged_in_id'])); ?></strong></span><br>
 	  <hr style="margin:0px;"/>
 	  <small>Super Admin</small>
     </div>
@@ -82,10 +82,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
 	 <div class="w3-bar-item w3-button w3-padding w3-hover-blue" onclick="open_nav_accord('a1')">
-		<i class="fa fa-users fa-fw"></i> <b>Users</b> <i class="fa fa-caret-down w3-right fa-lg" style="position:relative;top:5px;"></i>
+		<i class="fa fa-users fa-fw"></i> <b>Add Admin</b> <i class="fa fa-caret-down w3-right fa-lg" style="position:relative;top:5px;"></i>
 	 </div>
 	  <div id="a1" class="w3-hide w3-white w3-animate-opacity w3-rightbar w3-border-blue" style="padding-left:20px;">
-		<a href="?new_user=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-plus fa-fx"></i>  New User </a>
+		<a href="?new_user=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-plus fa-fx"></i>  Add Department Chairman </a>
 		<a href="?list=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-list-ul fa-fx"></i>  User List </a>
 	  </div>
 	 <div class="w3-bar-item w3-button w3-padding w3-hover-blue" onclick="open_nav_accord('a3')">
@@ -211,8 +211,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 								<div class="w3-col s12 l7 m7">
 									<select class="w3-select w3-border" name="user_type" id="user_type" required />
 									  <option value="" disabled selected>Choose user type</option>
-									  <option value="1">Administrator (Chairman)</option>
-									  <option value="2">Research Professor</option>
+									  <option value="1">Administrator (Chairman)</option> 
 									</select>
 								</div>
 							</div>
@@ -268,7 +267,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					</thead>
 					<tbody>
 						<?php
-							$sql = mysql_query("SELECT * FROM `users` WHERE `username`!='admin'");
+							$sql = mysql_query("SELECT * FROM `users` WHERE `username`!='admin' and user_type='1'");
 							while($row = mysql_fetch_assoc($sql)){
 						?>
 						<tr>
@@ -276,7 +275,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 							<td><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name']?></td>
 							<td><?php
 								if($row['user_type'] == 1){
-									echo "Super Administrator";
+									echo "Department Chairman";
 								}else if($row['user_type'] == 2){
 									echo "Research Professor";
 								}else if($row['user_type'] == 3){
@@ -339,14 +338,21 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 				<div class="w3-container" style="">
 					<div class="w3-row"  style="min-width:250px; max-width:600px;margin:0px auto;" >
 						<form action="javascript:void(0);" onsubmit="return addNewDepartment()" id="deptForm" class="w3-container w3-margin">
-							<div class="w3-row">
+							<?php
+								$dept=mysql_query("select * from departments");
+								$num=mysql_num_rows($dept);
+								if($num==4){
+							?>
+                            <div class="w3-panel w3-red">All Departments has been added!</div>
+                            <?php } ?>
+                            <div class="w3-row">
 							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Department Name:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Department Name:</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="deptName" id="deptName" type="text" placeholder="" required />
+								  <input class="w3-input w3-border" name="deptName" id="deptName" <?php if($num==4) echo "disabled"; ?> type="text" placeholder="" required />
 								</div>
 							</div>
 							 
-							<button class="w3-button w3-right w3-section w3-blue w3-ripple w3-padding">Submit</button>
+							<button class="w3-button w3-right w3-section w3-blue w3-ripple w3-padding"  <?php if($num==4) echo "disabled"; ?>>Submit</button>
 
 							</form>
 					</div>

@@ -181,7 +181,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <script type="text/javascript" src="researchActions.js"></script>
 <script src="../dist/js/select2.min.js"></script>
 <script>
-
+/* var $select = $("select");
+$select.on("change", function() {
+    var selected = [];  
+	
+    $.each($select, function(index, select) {           
+        if (select.value != "") { selected.push(select.value); }
+		//console.log(select.value);
+    });         
+   $("option").prop("disabled", false);         
+   for (var index in selected) { $('option[value="'+selected[index]+'"]').prop("disabled", true);   }
+}); */
 </script>
 
 </body>

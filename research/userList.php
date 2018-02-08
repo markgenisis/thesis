@@ -7,24 +7,24 @@
 			<tr>
 				<th>Username</th>
 				<th>Full Name</th>
-				<th>User Type</th>
+				<!-- <th>User Type</th>-->
                 <th>Department</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php
-				$query = mysql_query("select * from users where user_type!='1'");
+				$query = mysql_query("select * from users where user_type=' '");
 				while($r = mysql_fetch_assoc($query)){
 			?>
 				<tr>
 					<td><?php echo $r['username']?></td>
 					<td><?php echo ucwords($r['first_name'].' '.$r['middle_name'].' '.$r['last_name'])?></td>
-					<td>
+					<!--<td>
 						<?php
 							echo getUserType($r['user_type']);
 						?>
-					</td>
+					</td> -->
                     <td><?php echo getDept($r['deptID']); ?></td>
 					<td>
 						<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>

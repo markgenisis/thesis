@@ -3,7 +3,7 @@ function research_users(){
 	var lname = $('#l_name').val();
 	var mname = $('#m_name').val();
 	var username = $('#user_name').val();
-	var usertype = $('#user_type').val();
+	//var usertype = $('#user_type').val();
 	var password = $('#user_pw').val();
 	var password_c = $('#user_pw_c').val();
 	
@@ -14,7 +14,7 @@ function research_users(){
 			url:'researchProcess.php',
 			type:'post',
 			cache:false,
-			data:'fname='+fname+'&lname='+lname+'&mname='+mname+'&username='+username+'&usertype='+usertype+'&password='+password+'&addFromResearch=true',
+			data:'fname='+fname+'&lname='+lname+'&mname='+mname+'&username='+username+'&password='+password+'&addFromResearch=true',
 			beforeSend:function(){
 				console.log("Adding");
 			},
@@ -37,6 +37,9 @@ function saveCriteria(){
 	var criteriaOrder = JSON.stringify($('input[name="criteriaOrder[]"]').map(function () {
     			return this.value; // $(this).val()
 				}).get());		
+	var criteriaPercentage = JSON.stringify($('input[name="percentage[]"]').map(function () {
+    			return this.value; // $(this).val()
+				}).get());		
 	var templateName = $('#templateName').val();
 	var templateDesc = $('#res_desc').val();
 	var templateMaxRate = $('#maxRate').val();
@@ -44,7 +47,7 @@ function saveCriteria(){
 		url:'researchProcess.php',
 		type:'post',
 		cache:false,
-		data:'criteria='+criteria+'&criteriaDesc='+criteriaDesc+'&criteriaOrder='+criteriaOrder+'&templateName='+templateName+'&templateDesc='+templateDesc+'&templateMaxRate='+templateMaxRate,
+		data:'criteria='+criteria+'&criteriaDesc='+criteriaDesc+'&criteriaOrder='+criteriaOrder+'&templateName='+templateName+'&templateDesc='+templateDesc+'&templateMaxRate='+templateMaxRate+"&criteriaPercentage="+criteriaPercentage,
 		beforeSend:function(){
 			
 		},
