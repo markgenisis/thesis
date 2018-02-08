@@ -107,7 +107,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	  </div>
    
     <a href="javascript:void(0);" onclick="document.getElementById('activeSYModal').style.display='block';" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw"></i>  <b>Active SY</b></a>
-    <a href="?dtr=true" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o fa-fw"></i>  <b>DTR</b></a>
+   
 	
 	
 	

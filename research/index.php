@@ -122,6 +122,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 		<a href="?newSched=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-plus fa-fx"></i>  New Schedule </a>
 		<a href="?listSched=true" class="w3-bar-item w3-button w3-small"><i class="fa fa-list-ul fa-fx"></i>  Schedule List </a>
 	  </div>
+       <a href="?dtr=true" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o fa-fw"></i>  <b>DTR</b></a>
    <!-- 
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
@@ -169,6 +170,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					require('listRub.php'); 
 				}else if(isset($_GET['viewSched'])){
 					require('../viewSched.php'); 
+				}else if(isset($_GET['dtr'])){
+					require('dtrs.php');
+				}else if(isset($_GET['listSched'])){
+					require('schedList.php');
 				}?>
 		</div>
 	</div>

@@ -51,7 +51,7 @@
 		if($check > 0){
 			echo "D";
 		}else{
-			$insert = mysql_query("INSERT INTO `users` (`first_name`,`middle_name`,`last_name`,`username`,`password`,`date_added`,`deptID`)VALUES ('$fname','$mname','$lname','$username','$password','$date_now','{$_SESSION['department_id']}')");
+			$insert = mysql_query("INSERT INTO `users` (`first_name`,`middle_name`,`last_name`,`username`,`password`,`date_added`,`deptID`,`descipline`)VALUES ('$fname','$mname','$lname','$username','$password','$date_now','{$_SESSION['department_id']}','{$_SESSION['descipline_id']}')");
 			if($insert){
 				echo "SUCCESS";
 			}else{
@@ -80,7 +80,7 @@
 		$criteriaArr = json_decode($_POST['criteria']);
 		$criteriaDescArr = json_decode($_POST['criteriaDesc']);
 		$criteriaOrdArr = json_decode($_POST['criteriaOrder']);
-		$criteriaPercentage = json_decode($_POST['criteriaPercentage']);
+		$criteriaPerArr = json_decode($_POST['criteriaPercentage']);
 		$templateName = $_POST['templateName'];
 		$templateDesc = $_POST['templateDesc'];
 		$templateMaxRate = $_POST['templateMaxRate'];
@@ -104,6 +104,7 @@
 					$criteria = $criteriaArr[$x];
 					$criteriaDesc = $criteriaDescArr[$x];
 					$criteriaOrd = $criteriaOrdArr[$x];
+					$criteriaPercentage=$criteriaPerArr[$x];
 					$insertCriteria = mysql_query("insert into `rubric_criteria` (`rubric_id`,`criteria`,`description`,`order`,`date_added`,`date_modified`,`percentage`) values ('$last_id','$criteria','$criteriaDesc','$criteriaOrd','$date','','$criteriaPercentage')");
 					$counter++;
 					if($insertCriteria){
@@ -255,7 +256,14 @@
 	
 	
 	
-	
+if(isset($_POST['resID'])){
+	$getPanel=mysql_query("select * from panels where researchId='{$_POST['resID']}'");?>
+    <option value="" selected disabled>Please select user</option>
+    <?php
+	while($row=mysql_fetch_assoc($getPanel)){ ?>
+		<option value="<?php echo $row['id']; ?>"><?php echo implode(" ",getName($row['name'])); ?></option>	
+<?php	}
+}
 	
 	
 ?>

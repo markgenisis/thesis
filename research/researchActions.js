@@ -36,13 +36,26 @@ function saveCriteria(){
 				}).get());	
 	var criteriaOrder = JSON.stringify($('input[name="criteriaOrder[]"]').map(function () {
     			return this.value; // $(this).val()
-				}).get());		
+				}).get());	
+	var total=0;
+	var tots=$('input[name="percentage[]"]').map(function () {
+    			total+=parseInt(this.value); // $(this).val() 
+				}).get()
 	var criteriaPercentage = JSON.stringify($('input[name="percentage[]"]').map(function () {
-    			return this.value; // $(this).val()
-				}).get());		
+    			return this.value; // $(this).val() 
+				}).get());	
+	
+	//$(criteriaPercentage).each(function(){
+		//console.log($(this).val());
+	//});
+		
 	var templateName = $('#templateName').val();
 	var templateDesc = $('#res_desc').val();
 	var templateMaxRate = $('#maxRate').val();
+	if(total != 100){
+		alert("Percentage must be 100 in total!");
+		return false;
+		}
 	$.ajax({
 		url:'researchProcess.php',
 		type:'post',
@@ -213,3 +226,14 @@ function excludeSelected(){
 			}
 		});
 }*/
+function getTitlePanels(){
+	var resID=$("#researchID").val();
+	$.ajax({
+		type: "POST",
+		url: "researchProcess.php",
+		data: "resID="+resID,
+		success: function(data){
+			$("#userId").html(data);
+		}
+	});
+}
