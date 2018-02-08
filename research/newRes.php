@@ -9,6 +9,7 @@
 			success:function(data){
 				console.log(data);
 				$('#listOfPanels').html(data);
+				$("#panelTemp").hide();
 			}
 		});
 	}
@@ -21,6 +22,7 @@
 			success:function(data){
 				console.log(data);
 				$('#listOfChair').html(data);
+				$("#chairTemp").hide();
 			}
 		});
 	}
@@ -82,13 +84,13 @@
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Panel Chair:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Panel Chair:</b></div>
 				<div class="w3-col s12 l9 m9">
-					<div id="listOfChair"></div>
+					<div id="listOfChair"><select class="w3-input w3-border" id="chairTemp"></select></div>
 				</div>
 			</div>
 			<div class="w3-row">
 			  <div class="w3-col m3 l3 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Panel Members:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Panel Members:</b></div>
 				<div class="w3-col s12 l9 m9">
-				  <div id="listOfPanels"></div>
+				  <div id="listOfPanels"><select class="w3-input w3-border" id="panelTemp"></select></div>
 				</div>
 			</div>
 			<div class="w3-row">
