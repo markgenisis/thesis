@@ -13,11 +13,17 @@
 						<select name="researchID" id="researchID" class="w3-input w3-border" onChange="getTitlePanels()" required>
 							<option value="" selected disabled>Please select title</option>
 							<?php 
+							$courses=array();
+				$mycourse=mysql_query("select * from courses where descipline ='{$_SESSION['descipline_id']}'");
+				while($rw=mysql_fetch_assoc($mycourse)){
+					array_push($courses,$rw['id']);
+				}
 								$sql = mysql_query("SELECT * FROM `researches` ");
 								while($row = mysql_fetch_assoc($sql)){
+									if(in_array($row['course_id'],$courses)){
 							?>
 								<option value="<?php echo $row['id'];?>"><?php echo ucwords($row['title']);?></option>
-							<?php }?>
+							<?php } }?>
 						</select>
 					</td>
                     <td>&nbsp;</td>

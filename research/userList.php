@@ -14,7 +14,7 @@
 		</thead>
 		<tbody>
 			<?php
-				$query = mysql_query("select * from users where user_type=' '");
+				$query = mysql_query("select * from users where user_type=' ' and descipline='{$_SESSION['descipline_id']}'");
 				while($r = mysql_fetch_assoc($query)){
 			?>
 				<tr>

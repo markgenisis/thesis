@@ -261,7 +261,7 @@ if(isset($_POST['resID'])){
     <option value="" selected disabled>Please select user</option>
     <?php
 	while($row=mysql_fetch_assoc($getPanel)){ ?>
-		<option value="<?php echo $row['id']; ?>"><?php echo implode(" ",getName($row['name'])); ?></option>	
+		<option value="<?php echo $row['name']; ?>"><?php echo implode(" ",getName($row['name'])); ?></option>	
 <?php	}
 }
 	

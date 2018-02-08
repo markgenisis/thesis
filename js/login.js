@@ -30,7 +30,7 @@ function logmein(){
 					location="admin/";
 				}else if(data == "2"){
 					location="research/";
-				}else if(data == "3"){
+				}else if(data == "3GRANTED"){
 					location="panel/";
 				}else if(data == "4GRANTED"){
 					location="adviser/";

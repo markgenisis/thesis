@@ -1,3 +1,11 @@
+<?php
+include "../include/dbcon.php";
+ $sched=mysql_query("select * from schedules where researchId='{$_POST['researchID']}'");
+ while($row=mysql_fetch_assoc($sched)){
+ 	$scheds=strtotime($row['dateSchedule']);
+ }
+ $date=date("d",$scheds);
+?>
 <html xmlns:v="urn:schemas-microsoft-com:vml"
 xmlns:o="urn:schemas-microsoft-com:office:office"
 xmlns:w="urn:schemas-microsoft-com:office:word"
@@ -37,7 +45,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 href="CSCForm48_DailyTimeRecord(DTR)_files/colorschememapping.xml">
 <style>
 body{
-	width:400px !important; 
+	width:500px !important; 
 }
 <!--
  /* Font Definitions */
@@ -191,7 +199,7 @@ div.WordSection1
  </o:shapelayout></xml><![endif]-->
 </head>
 
-<body lang=EN-US style='tab-interval:.5in' style="max-width:100px;">
+<body lang=EN-US style='tab-interval:.5in' style="max-width:100px;" onLoad="window.print();">
 
 <div class=WordSection1>
 
@@ -211,7 +219,7 @@ style='font-size:8.0pt;mso-bidi-font-size:12.0pt'>-----o0o-----<o:p></o:p></span
  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
   <td width=307 valign=top style='width:3.2in;border:none;border-bottom:solid windowtext 1.0pt;
   mso-border-bottom-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><b><o:p>&nbsp;</o:p></b></p>
+  <p class=MsoNormal align=center style='text-align:center'><b><o:p><?php echo implode(" ",getName($_POST['userId'])); ?></o:p></b></p>
   </td>
  </tr>
 </table>
@@ -237,7 +245,7 @@ style='mso-spacerun:yes'> </span>(Name)<o:p></o:p></span></p>
   </td>
   <td width=36 valign=top style='width:27.0pt;border:none;border-bottom:solid windowtext 1.0pt;
   mso-border-bottom-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><i><span style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></i></p>
+  <p class=MsoNormal><i><span style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><o:p><?php echo date("F",$scheds); ?></o:p></span></i></p>
   </td>
   <td width=60 valign=top style='width:45.0pt;border:none;border-bottom:solid windowtext 1.0pt;
   mso-border-bottom-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
@@ -378,8 +386,9 @@ style='mso-spacerun:yes'> </span>(Name)<o:p></o:p></span></p>
   </td>
  </tr>
  <?php
- 
+
  for($x=1; $x<=31; $x++){
+	 //if($date==$x){
  ?>
  <tr style='mso-yfti-irow:2'>
   <td width=31 valign=top style='width:23.4pt;border-top:none;border-left:solid windowtext 1.0pt;
@@ -398,7 +407,7 @@ style='mso-spacerun:yes'> </span>(Name)<o:p></o:p></span></p>
   .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:windowtext;mso-border-style-alt:
   solid;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
-  mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+  mso-bidi-font-family:Arial'><o:p><?php if($x==date("d",$scheds)){ if(date("A",$scheds)=="AM"){ echo date("h:i",$scheds);} }?></o:p></span></p>
   </td>
   <td width=48 valign=top style='width:.5in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.5pt;
@@ -407,7 +416,7 @@ style='mso-spacerun:yes'> </span>(Name)<o:p></o:p></span></p>
   mso-border-right-alt:1.5pt;mso-border-color-alt:windowtext;mso-border-style-alt:
   solid;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
-  mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+  mso-bidi-font-family:Arial'><o:p><?php if($x==date("d",$scheds)){ if(date("A",$scheds)=="AM"){ echo date("h:i",$scheds + 7200);} }?></o:p></span></p>
   </td>
   <td width=48 valign=top style='width:.5in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -416,7 +425,7 @@ style='mso-spacerun:yes'> </span>(Name)<o:p></o:p></span></p>
   .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:windowtext;mso-border-style-alt:
   solid;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
-  mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+  mso-bidi-font-family:Arial'><o:p><?php if($x==date("d",$scheds)){ if(date("A",$scheds)=="PM"){ echo date("h:i",$scheds);} }?></o:p></span></p>
   </td>
   <td width=48 valign=top style='width:.5in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.5pt;
@@ -425,7 +434,7 @@ style='mso-spacerun:yes'> </span>(Name)<o:p></o:p></span></p>
   mso-border-right-alt:1.5pt;mso-border-color-alt:windowtext;mso-border-style-alt:
   solid;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
-  mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+  mso-bidi-font-family:Arial'><o:p><?php if($x==date("d",$scheds)){ if(date("A",$scheds)=="PM"){ echo date("h:i",$scheds + 7200);} }?></o:p></span></p>
   </td>
   <td width=48 valign=top style='width:.5in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -447,7 +456,7 @@ style='mso-spacerun:yes'> </span>(Name)<o:p></o:p></span></p>
  </tr>
  
  <?php
- }
+ } 
  ?>
  
  <tr style='mso-yfti-irow:33;mso-yfti-lastrow:yes;page-break-inside:avoid'>
