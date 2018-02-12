@@ -209,7 +209,14 @@
 		}
 	}
 	
-	
+	function getComments($x){
+		//return $x;
+		$sql = mysql_query("SELECT * FROM `comments` WHERE `researchId`='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$prop[] = $row['comment'];
+		}
+		if(isset($prop)){return $prop;}
+	}
 	function getPropo($x){
 		//return $x;
 		$sql = mysql_query("SELECT * FROM `proponents` WHERE `researchId`='$x'");

@@ -266,4 +266,30 @@ if(isset($_POST['resID'])){
 }
 	
 	
-?>
+if(isset($_POST['getCriteria'])){
+	$id=$_POST['getCriteria'];
+	$criteria=mysql_query("select * from rubric_criteria where rubric_id='$id'") or die(mysql_error());
+	?><br />
+    <h5><strong>TEMPLATE NAME: </strong><?php $rub=mysql_query("select * from rubrics where id='$id'");
+		$name=mysql_fetch_assoc($rub);
+		echo $name['template_name'];
+	 ?></h5>
+    <table class="w3-table w3-border w3-striped">
+    <tr>
+    	<th>Criteria</th>
+        <th>Percentage</th>
+    </tr>
+    <?php
+	while($row=mysql_fetch_assoc($criteria)){ ?>
+	<tr>
+    	<td><?php echo $row['criteria']; ?></td>
+        <td><?php echo $row['percentage']; ?></td>
+    </tr>
+	<?php }?>
+    </table>
+    <?php
+}if(isset($_POST['delRubrics'])){
+	$id=$_POST['delRubrics'];
+	$sql=mysql_query("delete from rubrics where id='$id'") or die(mysql_error());
+	$del=mysql_query("delete from rubric_critera where rubric_id='$id'") or die(mysql_error());
+}

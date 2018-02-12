@@ -1,6 +1,6 @@
 
 	<header class="w3-container" style="padding-top:22px">
-	<h5><b><i class="fa fa-list-ol fa-fx"></i> Users Lists</b><hr style="margin:0px" /></h5>
+	<h5><b><i class="fa fa-list-ol fa-fx"></i> Research Lists</b><hr style="margin:0px" /></h5>
 </header>
 <div class="w3-container">
 	<table id="researchTbl" class="w3-table w3-text-black display dataTable no-footer">
@@ -38,13 +38,15 @@
 					?>
 				</td>
 				<td>
-					<?php
-					//SELECTION OF RECOMENDATIONS
-					
-					?>
+					<?php if(getComments($row['id'])){
+									foreach(getComments($row['id']) as $key => $val){
+										echo $val."<br>";	
+									}
+								}
+							?>
 				</td>
 				<td>
-					<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
+					<a href="?viewSched=<?php echo $row['id']; ?>" class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> View</a>
 				</td>
 			</tr>
 			<?php $counter++;} }?>

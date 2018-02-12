@@ -83,5 +83,11 @@
 		<option value="<?php echo $row['id']; ?>"> <?php echo $row['courseCode']; ?></option>
 		<?php }
 	}
-	
+	if(isset($_POST['delDescipline'])){
+		$id=$_POST['delDescipline'];
+		$del=mysql_query("delete from descipline where id='$id'");
+		if($del){
+			echo "SUCCESS";
+		}
+	}
 ?>

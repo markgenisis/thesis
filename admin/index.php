@@ -333,17 +333,24 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					</thead>
 					<tbody>
 						<?php
-						
+						$res=mysql_query("select * from researches");
+						while($row=mysql_fetch_assoc($res)){
 						?>
 						<tr>
 							<td>1</td>
-							<td>AWP 2.0</td>
-							<td>Franky Samaniego, </td>
-							<td>ashdaks dhalkshdla kshd alksdj</td>
+							<td><?php echo $row['title']; ?></td>
+							<td><?php foreach(getPropo($row['id']) as $key => $val){echo $val.",";} ?></td>
+							<td><?php if(getComments($row['id'])){
+									foreach(getComments($row['id']) as $key => $val){
+										echo $val."<br>";	
+									}
+								}
+							?></td>
 							<td>
-								<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
+								<a href="?viewSched=<?php echo $row['id']; ?>" class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> View</a>
 							</td>
 						</tr>
+                        <?php } ?>
 					</tbody>
 				</table>
 			</div>
@@ -473,7 +480,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 							<td><?php echo getDept($_SESSION['department_id']);?></td>
 							<td><?php echo $row['descipline']?></td>
 							<td>
-								<button class="w3-button w3-red w3-small"><span class="fa fa-trash fa-fx"></span> Delete</button>
+								<button class="w3-button w3-red w3-small" onClick="delDescipline(<?php echo $row['id']; ?>)"><span class="fa fa-trash fa-fx"></span> Delete</button>
 							</td>
 						</tr>
 						<?php }?>

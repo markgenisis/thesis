@@ -130,3 +130,15 @@ function getDtr(){
 		}
 	});
 }
+function delDescipline(x){
+	if(confirm("Do you want to delete this descipline?")){
+		$.ajax({
+			type: "POST",
+			url: "adminProcess.php",
+			data: "delDescipline="+x,
+			success: function(data){
+				location.reload();
+			}
+		});
+	}
+}

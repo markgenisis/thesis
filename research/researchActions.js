@@ -237,3 +237,25 @@ function getTitlePanels(){
 		}
 	});
 }
+function getRubrics(x){
+		$.ajax({
+			type: "POST",
+			url: "researchProcess.php",
+			data: "getCriteria="+x,
+			success: function(data){
+				$("#rubs").html(data);
+			}
+		});
+	}
+	function delRubrics(x){
+		if(confirm("Do you want to delete this rubrics?")){
+		$.ajax({
+			type: "POST",
+			url: "researchProcess.php",
+			data: "delRubrics="+x,
+			success: function(data){
+				location.reload();
+			}
+		});
+		}
+	}

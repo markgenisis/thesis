@@ -19,19 +19,20 @@ body, html {height: 100%}
     min-height: 100%;
     background-position: center;
     background-size: cover;
+	 filter: alpha(opacity=50);
 }
 </style>
 <body>
 
 
-<div class="bgimg w3-display-container w3-animate-opacity w3-text-white ">
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white " >
   <div class="w3-display-middle w3-card-4 w3-padding-large w3-round w3-dark-grey">
 	 <h3 class="w3-text-shadow" style="text-shadow:2px 2px 0px #444">
 	 <img src="images/logo.png" class="w3-white" width="60" height="60" style="position:relative !important;top:33px;z-index:99999;"/> 
 	 <span class="w3-hide-small w3-hide-medium">Research Repository System</span><span class=" w3-hide-large"><strong>RSS</strong></span><hr class="w3-animate-right" style="margin-top:0px;border-top:3px solid #eee;min-width:250px"></h3>
 	 <p style="position:relative;top:-25px;font-size:11px" class="w3-right w3-text-small">© 2017 <span class="w3-hide-small w3-hide-medium">Research Repository System</span><span class="w3-hide-large">RSS</span>. All Rights Reserved.</p>
 	 
-      <div class="w3-container w3-padding-16" id="loginFormCon">
+      <div class="w3-container w3-padding-16" id="loginFormCon" >
 		<form class="w3-form" id="login_form" method="" action="">
         <div class="w3-container" style="display:none;" id="status_on_login"></div>
 			<div class="w3-padding-16" style="position:relative;">
