@@ -61,9 +61,30 @@ $(document).ready(function() {
 	$('#schedResDateTime').datepicker({
 	});
 });
+
+
+function searchNow(){
+	var searchMe = $("#searchMe").val();
+	if(searchMe == '' || searchMe == " "){
+			$('#searchResults').addClass("w3-hide ");
+	}else{
+		$.ajax({
+			url:'adviserProcess.php',
+			type:'post',
+			data:'toSearch='+searchMe,
+			success:function(data){
+				console.log(data);
+				$('#searchResults').removeClass("w3-hide ");
+				$('#searchResults').html(data);
+			}
+		})
+	}
+	
+}
 </script>
 <body class="w3-light-grey">
 <!-- Top container -->
+<div id="searchResults" class="w3-hide" style="background-color:#fff; min-width:500px;max-width:300px;position:absolute;top:50px; padding:10px;left:280px;z-index:99999999;clear:both;"></div>
 <div class=" w3-row w3-bar w3-top w3-white w3-large" style="z-index:9999;box-shadow:2px 2px 6px #eee;">
 	<div class="w3-hide-small w3-bar-item w3-blue" style="width:230px;text-align:center;text-shadow:2px 2px 1px #000;font-weight:bold;">
 		<a href="../panel/" style="text-decoration:none;"> <img src="../images/logo.png" class="w3-white w3-circle w3-card-4" width="25" height="25" />   Research Repository</a>
@@ -71,7 +92,7 @@ $(document).ready(function() {
 	<button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i></button>
 	<div class="w3-hide-small">
 	<span class="fa fa-search w3-bar-item fa-lg" style="padding-top:15px !important;"></span>
-	<input class="w3-input w3-bar-item w3-block w3-rest" type="text" placeholder="Search" style="padding-left:10px !important; min-width:50%;">
+	<input class="w3-input w3-bar-item w3-block w3-rest" id="searchMe" type="text" onkeyup="return searchNow()" placeholder="Search" style="padding-left:10px !important; min-width:50%;">
 	<span class="w3-bar-item w3-right">
 		<a href="../logout.php" class="w3-small w3-text-black "style="text-decoration:none;"><i class="fa fa-sign-out fa-fx"></i> Logout</a>
 	</span>
