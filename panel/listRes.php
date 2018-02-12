@@ -9,7 +9,7 @@
 				<!--<th>ID</th>-->
 				<th>Title</th>
 				<th>Proponents</th>
-				<th>Status</th>
+				 
 				<th></th>
 				<th>Actions</th>
 			</tr>
@@ -29,7 +29,7 @@
 				<!--<td><?php echo $row['id'];?></td>-->
 				<td><?php echo $title;?></td>
 				<td><?php echo implode(", ",$proponents); ?></td>
-				<td>ashdaks dhalkshdla kshd alksdj</td>
+				 
 				<td class="w3-center">
 					<?php
 						
@@ -37,7 +37,31 @@
                     <a href="?rating=<?php echo $row['researchId']; ?>" class="w3-btn w3-green" style="text-decoration:none;">Rating</a>&nbsp;<a class="w3-btn w3-orange" href="?comments=<?php echo $row['researchId']; ?>" style="text-decoration:none; color:#fff;" >Comments</a>
 				</td>
 				<td>
-					<a href="?viewSched=<?php echo getSchedId($row['researchId'])?>" class="w3-button w3-green w3-small"><span class="fa fa-eye fa-fx"></span> View</button>
+					<a href="?viewSched=<?php echo getSchedId($row['researchId'])?>" class="w3-button w3-green w3-small"><span class="fa fa-eye fa-fx"></span> View</a>
+				</td>
+			</tr>
+			<?php
+				}
+			?><?php
+				//print_r($_SESSION);
+				$panelId = $_SESSION['logged_in_id'];
+				$sql = mysql_query("SELECT * FROM `researches` WHERE `adviserId`='$panelId'");
+				while($row = mysql_fetch_assoc($sql)){
+					$researchId = $row['id'];
+					$title = getTitle($researchId);
+					$proponents = getPropo($researchId);
+					
+			?>
+			<tr>
+				<!--<td><?php echo $row['id'];?></td>-->
+				<td><?php echo $title;?></td>
+				<td><?php echo implode(", ",$proponents); ?></td>
+				 
+				<td class="w3-center">
+					 
+				</td>
+				<td>
+					<a href="?viewSched=<?php echo  $row['id'];?>" class="w3-button w3-green w3-small"><span class="fa fa-eye fa-fx"></span> View</a>
 				</td>
 			</tr>
 			<?php
