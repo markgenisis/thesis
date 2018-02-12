@@ -129,7 +129,7 @@ function getDtr(){
 			$("#dtrHolder").html(data);
 		}
 	});
-}
+} 
 function delDescipline(x){
 	if(confirm("Do you want to delete this descipline?")){
 		$.ajax({
@@ -140,5 +140,25 @@ function delDescipline(x){
 				location.reload();
 			}
 		});
+	} 
+}
+
+
+function searchNow(){
+	var searchMe = $("#searchMe").val();
+	if(searchMe == '' || searchMe == " "){
+			$('#searchResults').addClass("w3-hide ");
+	}else{
+		$.ajax({
+			url:'adminProcess.php',
+			type:'post',
+			data:'toSearch='+searchMe,
+			success:function(data){
+				console.log(data);
+				$('#searchResults').removeClass("w3-hide ");
+				$('#searchResults').html(data);
+			}
+		})
 	}
+	
 }

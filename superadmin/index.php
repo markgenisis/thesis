@@ -72,7 +72,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <div class="w3-col s8 w3-bar">
       <span><strong><?php echo implode(" ",getName($_SESSION['logged_in_id'])); ?></strong></span><br>
 	  <hr style="margin:0px;"/>
-	  <small>Super Admin</small>
+	  <small>Dean</small>
     </div>
   </div>
   <hr>
@@ -314,17 +314,24 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					</thead>
 					<tbody>
 						<?php
-						
+						$res=mysql_query("select * from researches");
+						while($row=mysql_fetch_assoc($res)){
 						?>
 						<tr>
 							<td>1</td>
-							<td>AWP 2.0</td>
-							<td>Franky Samaniego, </td>
-							<td>ashdaks dhalkshdla kshd alksdj</td>
+							<td><?php echo $row['title']; ?></td>
+							<td><?php foreach(getPropo($row['id']) as $key => $val){echo $val.",";} ?></td>
+							<td><?php if(getComments($row['id'])){
+									foreach(getComments($row['id']) as $key => $val){
+										echo $val."<br>";	
+									}
+								}
+							?></td>
 							<td>
-								<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
+								<a href="?viewSched=<?php echo $row['id']; ?>" class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> View</a>
 							</td>
 						</tr>
+                        <?php } ?>
 					</tbody>
 				</table>
 			</div>
@@ -385,7 +392,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					</tbody>
 				</table>
 			</div>
-			<?php }?>
+			<?php } if(isset($_GET['viewSched'])){
+					require("../viewSched.php"); 
+				}
+				?>
 		</div>
 	</div>
   <!-- Header -->

@@ -265,7 +265,7 @@ if(isset($_POST['resID'])){
 <?php	}
 }
 	
-	
+	 
 if(isset($_POST['getCriteria'])){
 	$id=$_POST['getCriteria'];
 	$criteria=mysql_query("select * from rubric_criteria where rubric_id='$id'") or die(mysql_error());
@@ -293,3 +293,22 @@ if(isset($_POST['getCriteria'])){
 	$sql=mysql_query("delete from rubrics where id='$id'") or die(mysql_error());
 	$del=mysql_query("delete from rubric_critera where rubric_id='$id'") or die(mysql_error());
 }
+ 
+	
+	
+	if(isset($_POST['toSearch'])){
+		$toSearch =$_POST['toSearch'];
+		$sql = mysql_query("SELECT * FROM `proponents` WHERE `name` LIKE '$toSearch%'");
+		$num = mysql_num_rows($sql);
+		if($num > 0){
+				echo "<strong>Proponents:</strong><ul class='w3-ul'>";
+			while($row = mysql_fetch_assoc($sql)){
+				echo "<li><a href='?viewSched=".$row['researchId']."' style='color:#000;'>".ucwords($row['name'])."</a></li>";
+			}
+				echo "</ul><hr/>";
+		}
+	//	$sql = mysql_query("SELECT * FROM `proponents` WHERE `name` LIKE '$toSearch%'");
+	} 
+	
+?>
+ 
