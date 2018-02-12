@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2018 at 12:30 PM
+-- Generation Time: Feb 12, 2018 at 01:23 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -283,7 +283,7 @@ CREATE TABLE `schedules` (
 --
 
 INSERT INTO `schedules` (`id`, `researchId`, `venue`, `defenseType`, `rubricId`, `dateSchedule`, `dateAdded`, `status`) VALUES
-(2, '2', 'CESD', '1', '2', '02/09/2018 7:00 PM', '1518099782', '0');
+(2, '2', 'CESD', '1', '2', '02/11/2018 9:00 PM', '1518099782', '0');
 
 -- --------------------------------------------------------
 
