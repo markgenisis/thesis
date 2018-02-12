@@ -74,7 +74,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <span><strong><?php echo implode(' ',getName($_SESSION['logged_in_id'])); ?></strong></span><br>
  
 	  <hr style="margin:0px;"/>
-	  <small>Chairman</small>
+	  <small>Chairman - <?php echo getDept($_SESSION['department_id']); ?></small>
     </div>
   </div>
   <hr>

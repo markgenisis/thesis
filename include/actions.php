@@ -15,35 +15,11 @@ if(isset($_POST['username'])){
 			$_SESSION['descipline_id']=$row['descipline'];
 			
 			$id= $row['id'];
-			if($row['user_type']!=""){
-			echo $row['user_type'];
-			}
-			$sched=mysql_query("select * from schedules");
-			while($rw=mysql_fetch_assoc($sched)){
-				$sch=mysql_query("select * from panels where researchId='{$rw['researchId']}' and name='$id'");
-				$schs=mysql_fetch_assoc($sch);
-				$num=mysql_num_rows($sch);
-				if($num){
-					$_SESSION['ACCESS_TYPE']= $schs['designation'];
-					 echo  $schs['designation'];
-					$time=strtotime($rw['dateSchedule']);
-							//echo date('F j, Y h:i A',$time)." - ".date('F j, Y h:i A',$now).' ';
-							 $upto=$time+7200;
-				//echo $time - $now;
-					if($time>$now || $upto > $now){
-								   $access=$time-$now;
-								if($access<1800){ 
-									 echo $_SESSION['LOGIN_ACCESS']="GRANTED";
-									 die();									 
-								} else{
-										echo $_SESSION['LOGIN_ACCESS']="DENIED";
-										 die();		
-								}
-					}else{
-								echo $_SESSION['LOGIN_ACCESS']="DENIED";
-								 die();		
-					}
-				}
+			if($row['user_type']==""){
+				$_SESSION['ACCESS_TYPE']=3;
+				echo "3GRANTED";
+			}else{
+			echo $_SESSION['ACCESS_TYPE'];
 			}
 		}
 	}else{

@@ -43,7 +43,7 @@
 			$num=mysql_num_rows($getRate);
 			if($num){$rate=mysql_result($getRate,0,"rating");$w++; }
 	 ?>
-     <label><?php echo $rc['criteria']; ?>:</label>
+     <label><?php echo $rc['criteria']; ?> (<?php echo $rc['percentage']; ?>%):</label>
      	<input type="text" class="w3-input w3-margin-bottom" name="criteria<?php echo $rc['id']; ?>" id="criteria<?php echo $rc['id']; ?>" placeholder="<?php echo $rc['description']; ?>" <?php if($num){?>value='<?php echo $rate;?>' disabled="disabled"<?php } ?> />
      <?php array_push($rIDs, $rc['id']); } 
 	 $ids=implode(",",$rIDs);

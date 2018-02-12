@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2018 at 03:20 PM
+-- Generation Time: Feb 11, 2018 at 12:30 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -14,6 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `thesis`
@@ -51,14 +52,6 @@ CREATE TABLE `comments` (
   `date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `paneld`, `researchId`, `comment`, `date`) VALUES
-(1, 13, 11, 'sadasdasd', '1517235033'),
-(2, 13, 11, 'What the F''! asdasd . asda. sd s', '1517235047');
-
 -- --------------------------------------------------------
 
 --
@@ -69,6 +62,7 @@ CREATE TABLE `courses` (
   `id` int(10) UNSIGNED NOT NULL,
   `course` varchar(255) NOT NULL,
   `courseCode` varchar(10) NOT NULL,
+  `descipline` int(3) NOT NULL,
   `dateAdded` varchar(255) NOT NULL,
   `dateModefied` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -77,8 +71,9 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `course`, `courseCode`, `dateAdded`, `dateModefied`) VALUES
-(1, 'Bachelor Of Science in Computer Science', 'BSCS', '1514510500', '');
+INSERT INTO `courses` (`id`, `course`, `courseCode`, `descipline`, `dateAdded`, `dateModefied`) VALUES
+(1, 'Information Technology', 'BSIT', 1, '1518063372', ''),
+(2, 'Computer Engineering', 'BSCpE', 2, '', '');
 
 -- --------------------------------------------------------
 
@@ -97,7 +92,29 @@ CREATE TABLE `departments` (
 
 INSERT INTO `departments` (`id`, `deptName`) VALUES
 (1, 'CESD'),
-(2, 'NHSD');
+(2, 'NHSD'),
+(3, 'TeEd'),
+(4, 'Ted');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `descipline`
+--
+
+CREATE TABLE `descipline` (
+  `id` int(3) NOT NULL,
+  `dept_id` int(3) NOT NULL,
+  `descipline` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `descipline`
+--
+
+INSERT INTO `descipline` (`id`, `dept_id`, `descipline`) VALUES
+(1, 1, 'ITE'),
+(2, 1, 'Eng');
 
 -- --------------------------------------------------------
 
@@ -117,16 +134,12 @@ CREATE TABLE `panels` (
 --
 
 INSERT INTO `panels` (`id`, `name`, `designation`, `researchId`) VALUES
-(21, '6', '3', '8'),
-(20, '6', '3', '7'),
-(19, '4', '3', '7'),
-(18, '4', '4', '7'),
-(22, '6', '4', '10'),
-(23, '6', '3', '10'),
-(24, '4', '3', '10'),
-(25, '6', '4', '11'),
-(26, '13', '3', '11'),
-(27, '6', '3', '11');
+(1, '22', '4', '1'),
+(2, '23', '3', '1'),
+(3, '24', '3', '1'),
+(4, '26', '4', '2'),
+(5, '27', '3', '2'),
+(6, '28', '3', '2');
 
 -- --------------------------------------------------------
 
@@ -145,11 +158,12 @@ CREATE TABLE `proponents` (
 --
 
 INSERT INTO `proponents` (`id`, `researchId`, `name`) VALUES
-(16, '7', 'Doctor Doctor'),
-(15, '7', 'Jerry B. Agsunod'),
-(14, '7', 'Richard Colasito'),
-(17, '10', 'Gen'),
-(18, '11', 'Gavin');
+(1, '1', 'Abby'),
+(2, '1', 'Love'),
+(3, '1', 'Franky'),
+(4, '2', 'Me'),
+(5, '2', 'Myself'),
+(6, '2', 'I');
 
 -- --------------------------------------------------------
 
@@ -173,8 +187,8 @@ CREATE TABLE `ratings` (
 --
 
 INSERT INTO `ratings` (`id`, `researchId`, `criteriaId`, `rubricId`, `panelId`, `type`, `rating`, `dateOfRating`) VALUES
-(1, '11', '5', '12', '13', '2', '80', '1517233593'),
-(2, '11', '6', '12', '13', '2', '98', '1517233593');
+(1, '2', '3', '2', '25', '1', '80', '1518140828'),
+(2, '2', '4', '2', '25', '1', '80', '1518140828');
 
 -- --------------------------------------------------------
 
@@ -196,11 +210,7 @@ CREATE TABLE `researches` (
 --
 
 INSERT INTO `researches` (`id`, `title`, `description`, `course_id`, `adviserId`, `schoolYear`) VALUES
-(9, 'asdasd', 'asdas', '4', '3', '2017-2018'),
-(7, 'AROS', '<ul><li>asdhgaks djasd</li><li>asd</li><li>a</li><li>sd</li><li>as</li><li>da</li><li>sd</li></ul>', '1', '5', '2017-2018'),
-(8, 'asda s', 'asd asd', '4', '5', '2017-2018'),
-(10, 'Multi Events', '<p>asada', '1', '5', '2017-2018'),
-(11, 'Nanny Wanna', '', '1', '5', '2017-2018');
+(2, 'AROS', '<p>asdasd</p>', '1', '25', '2017-2018');
 
 -- --------------------------------------------------------
 
@@ -223,10 +233,8 @@ CREATE TABLE `rubrics` (
 --
 
 INSERT INTO `rubrics` (`id`, `template_name`, `description`, `max_rating`, `res_prof_id`, `date_added`, `date_modified`) VALUES
-(11, 'Template', '<p>asdasda</p>', '100', '2', '1514386048', ''),
-(12, 'Template 2', '<p>Template 2 Description</p>', '100', '2', '1514428345', ''),
-(13, 'Tem 3', '<p>asjdh</p>', '100', '2', '1514428507', ''),
-(14, 'Temp 4', '<p>asdad</p>', '100', '2', '1514428856', '');
+(1, 'asdas', '<p>asdasd', '100', '20', '1518096107', ''),
+(2, 'Sample Rubs', '<p>asdas', '100', '20', '1518096263', '');
 
 -- --------------------------------------------------------
 
@@ -239,6 +247,7 @@ CREATE TABLE `rubric_criteria` (
   `rubric_id` varchar(10) NOT NULL,
   `criteria` varchar(255) NOT NULL,
   `description` longtext NOT NULL,
+  `percentage` int(30) NOT NULL,
   `order` varchar(3) NOT NULL,
   `date_added` varchar(255) NOT NULL,
   `date_modified` varchar(255) NOT NULL
@@ -248,14 +257,9 @@ CREATE TABLE `rubric_criteria` (
 -- Dumping data for table `rubric_criteria`
 --
 
-INSERT INTO `rubric_criteria` (`id`, `rubric_id`, `criteria`, `description`, `order`, `date_added`, `date_modified`) VALUES
-(3, '11', 'Design', 'To be able to understand the design of the system', '1', '1514386048', ''),
-(4, '11', 'Coding', 'Checking proper implementation of codes', '1', '1514386048', ''),
-(5, '12', 'Temp 2 1st Criteria', 'asdasd', '1', '1514428345', ''),
-(6, '12', 'Temp 2 2nd Criteria', 'asdasd', '1', '1514428345', ''),
-(7, '13', 'Design', 'asdasd', '1', '1514428507', ''),
-(8, '14', '1', '2', '1', '1514428856', ''),
-(9, '14', '1', '2', '3', '1514428856', '');
+INSERT INTO `rubric_criteria` (`id`, `rubric_id`, `criteria`, `description`, `percentage`, `order`, `date_added`, `date_modified`) VALUES
+(3, '2', 'Design', 'asdasd', 40, '1', '1518096263', ''),
+(4, '2', 'System', 'sadsa', 60, '2', '1518096263', '');
 
 -- --------------------------------------------------------
 
@@ -279,10 +283,7 @@ CREATE TABLE `schedules` (
 --
 
 INSERT INTO `schedules` (`id`, `researchId`, `venue`, `defenseType`, `rubricId`, `dateSchedule`, `dateAdded`, `status`) VALUES
-(1, '7', '', '2', '', 'January 21, 2018 10:30 AM', '', ''),
-(2, '8', '', '2', '', 'January 24, 2018 2:00 PM', '', ''),
-(3, '10', 'CESD', '2', '12', '01/26/2018 1:07 PM', '1516939656', '0'),
-(4, '11', 'CESD', '2', '12', '01/28/2018 09:30 AM', '1517057979', '0');
+(2, '2', 'CESD', '1', '2', '02/09/2018 7:00 PM', '1518099782', '0');
 
 -- --------------------------------------------------------
 
@@ -298,6 +299,7 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `user_type` varchar(10) NOT NULL,
+  `descipline` int(3) NOT NULL,
   `date_added` varchar(255) NOT NULL,
   `date_modified` varchar(255) NOT NULL,
   `deptID` int(3) NOT NULL
@@ -307,17 +309,16 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `username`, `password`, `user_type`, `date_added`, `date_modified`, `deptID`) VALUES
-(1, 'Admin', 'Admin', 'Admin', 'admin', 'admin', '1', '----', '----', 1),
-(2, 'Franky', 'Seletaria', 'Samaniego', 'fsamaniego', '123456', '2', '1512217334', '', 1),
-(3, 'Wilson', 'Seletaria', 'Samaniego', 'wsamaniego', '123456', '2', '1512217776', '', 1),
-(4, 'Richard', 'R.', 'Colasito', 'richardColasito', 'balasubas', '3', '1512658426', '', 1),
-(5, 'Jenlo', 'B.', 'Diamse', 'jenloDiamse', 'diamse', '4', '1512682139', '', 1),
-(6, 'Jerry ', 'B.', 'Agsunod', 'jerryAgsunod', '0123456', '3', '1512715831', '', 1),
-(11, 'Mark Genisis', 'Sanorjo', 'Sabilla', 'markgenz', 'sabilla', '2', '1517029583', '', 1),
-(13, 'Mark', '', 'Sabilla', 'genz', 'sabilla', '3', '1517029744', '', 1),
-(14, 'Super', '', 'Admin', 'sAdmin', 'sAdmin', '0', '', '', 1),
-(17, 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', '3', '1517033499', '', 1);
+INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `username`, `password`, `user_type`, `descipline`, `date_added`, `date_modified`, `deptID`) VALUES
+(1, 'Admin', 'Admin', 'Admin', 'admin', 'admin', '1', 0, '----', '----', 1),
+(20, 'Romulus', '', 'Callos', 'rCallos', 'rCallos', '2', 1, '1518062451', '', 1),
+(14, 'Super', '', 'Admin', 'sAdmin', 'sAdmin', '0', 0, '', '', 1),
+(18, 'Jenlo', ' ', 'Diamse', 'cesd', 'cesd', '1', 0, '1518060584', '', 1),
+(26, 'Franky', '', 'Samaniego', 'franky', 'samaniego', '', 1, '1518098312', '', 1),
+(25, 'Mark Genisis', '', 'Sabilla', 'mark', 'sabilla', '', 1, '1518098078', '', 1),
+(27, 'Kiko', '', 'Sabilla', 'kiko', 'sabilla', '', 1, '1518098438', '', 1),
+(28, 'Sample', '', 'Sample', 'sample', 'sample', '', 1, '1518099705', '', 1),
+(29, 'Richard', '', 'Colasito', 'chard', 'chard', '2', 2, '1518103935', '', 1);
 
 --
 -- Indexes for dumped tables
@@ -345,6 +346,12 @@ ALTER TABLE `courses`
 -- Indexes for table `departments`
 --
 ALTER TABLE `departments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `descipline`
+--
+ALTER TABLE `descipline`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -409,7 +416,7 @@ ALTER TABLE `activeyear`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `courses`
 --
@@ -419,17 +426,22 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `descipline`
+--
+ALTER TABLE `descipline`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `panels`
 --
 ALTER TABLE `panels`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `proponents`
 --
 ALTER TABLE `proponents`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `ratings`
 --
@@ -439,27 +451,27 @@ ALTER TABLE `ratings`
 -- AUTO_INCREMENT for table `researches`
 --
 ALTER TABLE `researches`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `rubrics`
 --
 ALTER TABLE `rubrics`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `rubric_criteria`
 --
 ALTER TABLE `rubric_criteria`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

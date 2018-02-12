@@ -26,7 +26,13 @@
 		}
 	}
 	
-	
+	function getVenue($x){
+		//global $mysqli;
+		$sql=mysql_query("select * from schedules where researchId='$x'");
+		while($row=mysql_fetch_assoc($sql)){
+			return $row['venue'];
+		}
+	}
 
 	function getSchedId($x){
 		$sql = mysql_query("SELECT * FROM `schedules` WHERE `researchId`='$x' ORDER BY `id` DESC LIMIT 1");
@@ -212,7 +218,14 @@
 		}
 		return $prop;
 	}
-	
+	function getPanel($x){
+		//return $x;
+		$sql = mysql_query("SELECT * FROM `panels` WHERE `researchId`='$x'");
+		while($row = mysql_fetch_assoc($sql)){
+			$prop[] = implode(" ",(getName($row['name'])));
+		}
+		return $prop;
+	}
 	function getResearchId($x){
 		$sql = mysql_query("SELECT * FROM `schedules` WHERE `id`='$x'");
 		while($row = mysql_fetch_assoc($sql)){

@@ -40,6 +40,8 @@ function logmein(){
 					document.getElementById("password").focus();
 				}else if(data =='3DENIED'){
 					$("#status_on_login").html("<div class='w3-panel w3-red w3-padding'>DENIED! PLEASE LOGIN ON SCHEDULE.</div>").fadeIn("slow").delay(2000).hide("slow");
+				}else if(data =='4DENIED'){
+					$("#status_on_login").html("<div class='w3-panel w3-red w3-padding'>DENIED! PLEASE LOGIN ON SCHEDULE.</div>").fadeIn("slow").delay(2000).hide("slow");
 				}
 			}
 		});
