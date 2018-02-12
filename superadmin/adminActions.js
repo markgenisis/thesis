@@ -99,3 +99,24 @@ function changeSy(){
 		}
 	});
 }
+
+
+
+function searchNow(){
+	var searchMe = $("#searchMe").val();
+	if(searchMe == '' || searchMe == " "){
+			$('#searchResults').addClass("w3-hide ");
+	}else{
+		$.ajax({
+			url:'researchProcess.php',
+			type:'post',
+			data:'toSearch='+searchMe,
+			success:function(data){
+				console.log(data);
+				$('#searchResults').removeClass("w3-hide ");
+				$('#searchResults').html(data);
+			}
+		})
+	}
+	
+}
