@@ -158,6 +158,8 @@ function searchNow(){
 					require('viewSched.php');
 				}else if(isset($_GET['comments'])){
 					require('comments.php');
+				}else if(isset($_GET['holdRes'])){
+					require('../holdRes.php');
 				}
 				
 			?>

@@ -359,6 +359,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					</div>
 				</div>
 			<?php }?>
+			<?php if(isset($_GET['holdRes'])){
+					require('../holdRes.php');
+				}?>
 			<?php if(isset($_GET['listCourse'])){?>
 					<header class="w3-container" style="padding-top:22px">
 				<h5><b><i class="fa fa-list-ol fa-fx"></i> Department Lists</b><hr style="margin:0px" /></h5>
