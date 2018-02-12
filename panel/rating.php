@@ -23,7 +23,19 @@
         </tr>
      </table>
      <?php 
-	}$criteria=mysql_query("select * from schedules where researchId='{$_GET['rating']}'");
+	}
+	$schedule=mysql_query("select * from schedules where researchId='{$_GET['rating']}'");
+	$sch=mysql_fetch_assoc($schedule);
+	$now=time();
+	$allow=0;
+	$sched=strtotime($sch['dateSchedule']);
+	 
+	if((($sched - $now)<=1800) && (($now - $sched)<=7200)){
+	$allow=1;
+	}
+	 
+	$criteria=mysql_query("select * from schedules where researchId='{$_GET['rating']}'");
+	
 	while($row=mysql_fetch_assoc($criteria)){
 		$rubricsID=$row['rubricId'];
 		$rubs=mysql_query("select * from rubrics where id='$rubricsID'");
@@ -44,7 +56,7 @@
 			if($num){$rate=mysql_result($getRate,0,"rating");$w++; }
 	 ?>
      <label><?php echo $rc['criteria']; ?> (<?php echo $rc['percentage']; ?>%):</label>
-     	<input type="text" class="w3-input w3-margin-bottom" name="criteria<?php echo $rc['id']; ?>" id="criteria<?php echo $rc['id']; ?>" placeholder="<?php echo $rc['description']; ?>" <?php if($num){?>value='<?php echo $rate;?>' disabled="disabled"<?php } ?> />
+     	<input type="text" class="w3-input w3-margin-bottom" name="criteria<?php echo $rc['id']; ?>" id="criteria<?php echo $rc['id']; ?>" placeholder="<?php echo $rc['description']; ?>" <?php if($num){?>value='<?php echo $rate;?>' disabled="disabled"<?php }if(!$allow)echo "disabled"; ?>   />
      <?php array_push($rIDs, $rc['id']); } 
 	 $ids=implode(",",$rIDs);
 	 ?>
@@ -53,7 +65,7 @@
      <input type="hidden" id="rubricId" name="rubricId" value="<?php echo $rubricsID; ?>"  />
      <input type="hidden" id="researchId" name="researchId" value="<?php echo $_GET['rating']; ?>"  />
      <input type="hidden" id="rtype" name="rtype" value="<?php echo $row['defenseType']; ?>"  />
-     <button class="w3-btn w3-green w3-margin-top"  type="button"onclick="getRatings();" <?php if($w!=0){ ?>disabled<?php } ?> >Save Rating</button>
+     <button class="w3-btn w3-green w3-margin-top"  type="button"onclick="getRatings();" <?php if($w!=0){ ?>disabled<?php } if(!$allow)echo "disabled";?> >Save Rating</button>
      </form>
      </div>
      </div>

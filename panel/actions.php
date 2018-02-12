@@ -59,4 +59,4 @@ if(isset($_POST['toSearch'])){
 				echo "</ul><hr/>";
 		}
 	} 
-	} 
+
