@@ -154,6 +154,8 @@ function searchNow(){
 			<?php
 				if(isset($_GET['listRes'])){
 					require('listRes.php'); 
+				}else if(isset($_GET['holdRes'])){
+					require('../holdRes.php');
 				}
 			?>
 		</div>
